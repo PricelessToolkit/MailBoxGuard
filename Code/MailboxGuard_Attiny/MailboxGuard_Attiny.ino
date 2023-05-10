@@ -1,4 +1,5 @@
-// Youtube Channel "PricelessToolkit" https://youtu.be/RHsjFPWaYSY
+// Youtube Channel https://www.youtube.com/@PricelessToolkit/videos
+// GitHub https://github.com/PricelessToolkit/MailBoxGuard
 
 #include <SPI.h>
 #include <LoRa.h>
@@ -36,8 +37,8 @@ void setup() {
 
 
 void loop() {
-  // For accuracy, check the resistance of the resistors R6 and R7 with a multimeter and change value in the code
-  float volts = analogReadEnh(PIN_PB4, 12)*(1.1/4096)*(30+10)/10; // Resistors R6 (30k) and R7 (10k)
+	
+  float volts = analogReadEnh(PIN_PB4, 12)*(1.1/4096)*(30+10)/10;
   Serial.println(volts);
   
 
@@ -50,7 +51,7 @@ void loop() {
 
    }
 
-  if (volts < 3.36 and loopcounter == 1 ){   // Dont change "3.36" !!
+  if (volts < 3.36 and loopcounter == 1 ){   // Don't change "3.36" !!
     LoRa.beginPacket();
     LoRa.print("0xLBAT");   //  Your low Battery key here <---------------- Change This ! ----------------------
     LoRa.endPacket();
