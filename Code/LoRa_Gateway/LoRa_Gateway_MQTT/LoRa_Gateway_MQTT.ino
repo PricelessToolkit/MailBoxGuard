@@ -1,24 +1,11 @@
+#include "board.h"
 #include <SPI.h>
 #include <LoRa.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include "SSD1306Wire.h"
-SSD1306Wire display(0x3C, 21, 22);
+SSD1306Wire display(OLED_ADDRESS, OLED_SDA, OLED_SCL);
 
-// Change pins according to your board   https://github.com/Xinyuan-LilyGO/TTGO-LoRa-Series
-// Board LiLyGo_LoRa32_V2.1_1.6
-
-#define OLED_RST  -1
-#define LORA_MOSI 27
-#define LORA_MISO 19
-#define LORA_CLK  5
-#define LORA_NSS  18
-#define LORA_RST  23
-#define LORA_DIO0 26
-#define SDCARD_MOSI 15
-#define SDCARD_MISO 2
-#define SDCARD_SCLK 14
-#define SDCARD_CS   13
 
 ///////////////////////////////////////////////////// CHANGE THIS /////////////////////////////////////////////////////////////
 
@@ -126,8 +113,8 @@ void setup() {
 
 
 
-  SPI.begin(LORA_CLK, LORA_MISO, LORA_MOSI, LORA_NSS);
-  LoRa.setPins(LORA_NSS, LORA_RST, LORA_DIO0);
+  SPI.begin(CONFIG_CLK, CONFIG_MISO, CONFIG_MOSI, CONFIG_NSS);
+  LoRa.setPins(CONFIG_NSS, CONFIG_RST, CONFIG_DIO0);
   Serial.println("Starting LoRa on " + String(BAND)+ " MHz");
   if (!LoRa.begin(BAND)) {
       Serial.println("Starting LoRa failed!");
