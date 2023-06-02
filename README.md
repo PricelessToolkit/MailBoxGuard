@@ -12,8 +12,8 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 - How To
 - - YouTube video https://... "Not Ready"
-- My Shop
-- - MailBox Sensor https://...
+- My IoT Shop
+- - [MailBox Sensor](https://www.pricelesstoolkit.com/)
 - Aliexpress
 - - Gateway [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DCnmcvP)
 
