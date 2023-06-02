@@ -10,9 +10,12 @@
 ### How it works - Mailbox Use Case
 The Mailbox Guard is a device that detects when a new letter or package has been delivered to your mailbox using a PIR sensor and door reed switch. It can send a signal to your gateway, then gateway sends a message via WiFi to `Home Assistant "MQTT"` or to `WatsApp` allowing you to receive notifications directly into your phone. Or you can use it `offline`, the gateway display will show number of letters received , Battery status and signal strength. 
 
-- For more information go to
+- How To
 - - YouTube video https://... "Not Ready"
-- - Shop https://...
+- My Shop
+- - MailBox Sensor https://...
+- Aliexpress
+- - Gateway [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DCnmcvP)
 
 ### Sensor Specifications
 - Microcontroller "Attiny1616"
