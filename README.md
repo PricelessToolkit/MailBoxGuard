@@ -21,7 +21,7 @@
 - - - Only reed switch 0.23uAh
 - - - Every data submission usese 65uA
 - - Size
-- - - with charger "XXmm to XXmm"
+- - - With charger "XXmm to XXmm"
 - - - Without charger "XXmm to XXmm"
 
 
