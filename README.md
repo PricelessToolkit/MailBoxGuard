@@ -85,3 +85,17 @@ const char* mqtt_server = "Your_mqtt/homeassistant server IP";
 const int mqtt_port = 1883;
 
 ```
+
+# Home Assistant Configuration
+
+### Create a Sensor
+- File `loragateway.yaml`
+```
+mqtt:
+    sensor:
+     - name: "LoRa_Code"
+       state_topic: "LoRa-Gateway/Code"
+
+     - name: "LoRa_RSSI"
+       state_topic: "LoRa-Gateway/RSSI"
+```
