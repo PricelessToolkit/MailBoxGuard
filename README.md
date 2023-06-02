@@ -35,11 +35,11 @@ float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
 
 ### Choosing Firmware for LoRa Gateway
 1. `LoRa_Gateway_OLED.ino` "For offline use" Display turns on and shows that there is a new letter in the mailbox "number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
-2. `LoRa_Gateway_WhatsApp.ino` Sends a message to WhatsApp "You Have New Mail"
-3. `LoRa_Gateway_MQTT.ino` Sends a row message and RSSI to MQTT Server
+2. `LoRa_Gateway_WhatsApp.ino` - `NOT TESTED YET` Sends a message to WhatsApp "You Have New Mail".
+3. `LoRa_Gateway_MQTT.ino` Sends a row message and RSSI to MQTT Server.
 
 
-### Select Board Version
+### Select TTGO_LoRa Board Version
 
 - Change the BOARD definition in `board.h` according to the your board Version " 1 = ON / 0 = OFF ".
  ```
@@ -48,6 +48,26 @@ float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
  #define LORA_V1_6_OLED  0
  #define LORA_V2_0_OLED  1
  ```
+ 
+ ## TTGO Boards GPIOs
+| Name        | V1.0 | V1.2(T-Fox) | V1.6 | V2.0 |
+| ----------- | ---- | ----------- | ---- | ---- |
+| OLED RST    | 16   | N/A         | N/A  | N/A  |
+| OLED SDA    | 4    | 21          | 21   | 21   |
+| OLED SCL    | 15   | 22          | 22   | 22   |
+| SDCard CS   | N/A  | N/A         | 13   | 13   |
+| SDCard MOSI | N/A  | N/A         | 15   | 15   |
+| SDCard MISO | N/A  | N/A         | 2    | 2    |
+| SDCard SCLK | N/A  | N/A         | 14   | 14   |
+| DS3231 SDA  | N/A  | 21          | N/A  | N/A  |
+| DS3231 SCL  | N/A  | 22          | N/A  | N/A  |
+| LORA MOSI   | 27   | 27          | 27   | 27   |
+| LORA MISO   | 19   | 19          | 19   | 19   |
+| LORA SCLK   | 5    | 5           | 5    | 5    |
+| LORA CS     | 18   | 18          | 18   | 18   |
+| LORA RST    | 14   | 23          | 23   | 23   |
+| LORA DIO0   | 26   | 26          | 26   | 26   |
+ 
 ### Gateway LoRa Radio Configuration
 
 - The settings in the gateway and in the sensor must match.
