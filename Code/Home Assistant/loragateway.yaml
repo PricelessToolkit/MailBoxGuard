@@ -1,0 +1,11 @@
+mqtt:
+    sensor:
+     - name: "LoRa_Code"
+       state_topic: "LoRa-Gateway/Code"
+       json_attributes_topic: "LoRa-Gateway/Code"
+       value_template: '{{value_json.Code}}'
+
+     - name: "LoRa_RSSI"
+       state_topic: "LoRa-Gateway/RSSI"
+       json_attributes_topic: "LoRa-Gateway/RSSI"
+       value_template: '{{value_json.RSSI}}'
