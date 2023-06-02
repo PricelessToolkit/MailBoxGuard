@@ -16,7 +16,7 @@
 - - Optional 2 Pin SMD LiPo Battery connector
 - - Buid in Battry Charger "Can be separated"
 - - - Connector USB-C
-- - Extremaly Low Power Concumption
+- - Extremely Low Power Consumption
 - - - Motion Sensor PIR 11.30uAh
 - - - Only reed switch 0.23uAh
 - - - Every data submission usese 65uA
