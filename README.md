@@ -9,17 +9,20 @@
 
 - Specifications
 - - LoRa Bands "433/868/915"
-- - PIR Sensor AM312 "With option to turn off"
+- - PIR Sensor AM312 "With option to turn it off"
 - - Onboard reed switch "optional"
 - - External reed switch "Input 2 Pin"
 - - Battery Holder for "Li-Ion 14500"
-- - Optional 2 Pin LiPo Battery connector
+- - Optional 2 Pin SMD LiPo Battery connector
 - - Buid in Battry Charger "Can be separated"
 - - - Connector USB-C
 - - Extremaly Low Power Concumption
 - - - PIR 11.30uAh
 - - - Only reed switch 0.23uAh
 - - - Every data submission usese 65uA
+- - Size
+- - - with charger "XXmm to XXmm"
+- - - Without charger "XXmm to XXmm"
 
 
 ==============================
