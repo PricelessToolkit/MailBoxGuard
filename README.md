@@ -33,7 +33,7 @@ float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
 ```
 # Gateway Configuration
 
-### Made 3 firmware for the LoRa Gateway
+### Choosing Firmware for LoRa Gateway
 1. `LoRa_Gateway_OLED.ino` "For offline use" Display turns on and shows that there is a new letter in the mailbox "number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
 2. `LoRa_Gateway_WhatsApp.ino` Sends a message to WhatsApp "You Have New Mail"
 3. `LoRa_Gateway_MQTT.ino` Sends a row message and RSSI to MQTT Server
