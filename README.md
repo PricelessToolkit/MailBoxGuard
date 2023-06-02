@@ -5,9 +5,11 @@
 ==============================
 
 ### Made 3 firmware for the LoRa Gateway
-1. LoRa_Gateway_OLED.ino "For offline use" Display turns on and shows that there is a new letter in the mailbox "number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
-2. LoRa_Gateway_WhatsApp.ino Sends a message to WhatsApp "You Have New Mail"
-3. LoRa_Gateway_MQTT.ino Sends a row message and RSSI to MQTT Server
+1. `LoRa_Gateway_OLED.ino` "For offline use" Display turns on and shows that there is a new letter in the mailbox "number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
+2. `LoRa_Gateway_WhatsApp.ino` Sends a message to WhatsApp "You Have New Mail"
+3. `LoRa_Gateway_MQTT.ino` Sends a row message and RSSI to MQTT Server
+
+# Gateway Configuration
 
 ### Select Board Version
 
@@ -32,7 +34,7 @@ float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
 ```
 ### MailBox Sensor Code Configuration
 
-- Only in "LoRa_Gateway_OLED.ino", "LoRa_Gateway_WhatsApp.ino"
+- In `LoRa_Gateway_OLED.ino` and `LoRa_Gateway_WhatsApp.ino`
 ```
 String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
 String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
@@ -40,14 +42,14 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 
 
 ### WiFi Configuration
-- Only in "LoRa_Gateway_MQTT.ino" and "LoRa_Gateway_WhatsApp.ino"
+- In `LoRa_Gateway_MQTT.ino` and `LoRa_Gateway_WhatsApp.ino`
 ```
 const char* ssid = "Your_WIFI_SSID";
 const char* password = "Your_WIFI_password";
 ```
 ### MQTT Configuration
 
-- Only in "LoRa_Gateway_MQTT.ino"
+- Only in `LoRa_Gateway_MQTT.ino`
 ```
 const char* mqtt_username = "Your_mqtt_username";
 const char* mqtt_password = "Your_mqtt_password";
