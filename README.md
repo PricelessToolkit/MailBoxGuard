@@ -3,8 +3,8 @@
 
 
 ==============================
-## LoRa Gateway Configuration
 
+### Made 3 firmware for the LoRa Gateway
 
 ### Select Board Version
 
