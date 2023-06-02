@@ -3,12 +3,12 @@
 # Universal Long Range LoRa Sensor and Gateway
 ### Can be Integrated into Smart Homes or used offline.
 ### Use Cases
-- Mailbox Sensor
+- Mailbox Sensor - "Code examples are provided"
 - Motion Sensor
 - Door Window Sensor
 
 ### How it works - Mailbox Use Case
-The Mailbox Guard is a device that detects when a new letter or package has been delivered to your mailbox using a PIR sensor and door reed switch. It can send a signal to your gateway, then gateway sends a message to `Home Assistant "MQTT"` or to `WatsApp` allowing you to receive notifications directly into your phone. Or you can use it `offline`, the gateway display will show number of letters received , Battery status and signal strength. 
+The Mailbox Guard is a device that detects when a new letter or package has been delivered to your mailbox using a PIR sensor and door reed switch. It can send a signal to your gateway, then gateway sends a message wia WiFi to `Home Assistant "MQTT"` or to `WatsApp` allowing you to receive notifications directly into your phone. Or you can use it `offline`, the gateway display will show number of letters received , Battery status and signal strength. 
 
 - For more information go to
 - - YouTube video https://... "Not Ready"
