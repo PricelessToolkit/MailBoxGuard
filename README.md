@@ -33,7 +33,6 @@ float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
 ```
 const char* ssid = "Your_WIFI_SSID";
 const char* password = "Your_WIFI_password";
-
 ```
 ### MQTT Configuration
 
