@@ -8,10 +8,7 @@
 - Door Window Sensor
 
 ### How it works
-The Mailbox Sensor is a device that detects when a new letter or package has been delivered to your mailbox using a PIR sensor and door reed switch input. It can send a signal to your gateway, then gateway sends a message to `Home Assistant` , `WatsApp` allowing you to receive notifications directly into your phone*. Or you can use it offline, the gateway display will show number of letters received , Battery status and signal strength.
-
-
-The device is powered by a Li-ion 14500 or LiPo battery and has an integrated battery charger with a USB Type-C connector.
+The Mailbox Sensor is a device that detects when a new letter or package has been delivered to your mailbox using a PIR sensor and door reed switch input. It can send a signal to your gateway, then gateway sends a message to `Home Assistant "MQTT"` , `WatsApp` allowing you to receive notifications directly into your phone*. Or you can use it offline, the gateway display will show number of letters received , Battery status and signal strength. For more information watch the video Https://...
 
 ### Sensor Specifications
 - Microcontroller "Attiny1616"
