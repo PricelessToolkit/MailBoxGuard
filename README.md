@@ -53,8 +53,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - - PubSubClient
 - - SSD1306
 - - UrlEncode
-- - SPI
-- - WiFi
+
 
 # MailBox Sensor Configuration
 
