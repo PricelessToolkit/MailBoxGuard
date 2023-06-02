@@ -20,7 +20,7 @@
  #define LORA_V1_6_OLED  0
  #define LORA_V2_0_OLED  1
  ```
-### LoRa Configuration
+### Gateway LoRa Radio Configuration
 
 - The settings in the gateway and in the sensor must match.
 ```
@@ -59,8 +59,9 @@ const int mqtt_port = 1883;
 ```
 # MailBox Sensor Configuration
 
-### MailBox LoRa Configuration
+### MailBox LoRa Radio Configuration
 - In `Mailbox_Guard_Sensor.ino`
+- - The settings in the gateway and in the sensor must match.
 ```
   LoRa.setSignalBandwidth(125E3);         // signal bandwidth in Hz, defaults to 125E3
   LoRa.setSpreadingFactor(12);                 // ranges from 6-12,default 7 see API docs
