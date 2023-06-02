@@ -17,7 +17,7 @@
 - - Buid in Battry Charger "Can be separated"
 - - - Connector USB-C
 - - Extremaly Low Power Concumption
-- - - PIR 11.30uAh
+- - - Motion Sensor PIR 11.30uAh
 - - - Only reed switch 0.23uAh
 - - - Every data submission usese 65uA
 - - Size
