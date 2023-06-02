@@ -32,7 +32,7 @@
 #define TxPower 20
 float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
 ```
-### MailBox Sensor Code Configuration
+### New Mail Code Configuration
 
 - In `LoRa_Gateway_OLED.ino` and `LoRa_Gateway_WhatsApp.ino`
 ```
@@ -56,4 +56,24 @@ const char* mqtt_password = "Your_mqtt_password";
 const char* mqtt_server = "Your_mqtt/homeassistant server IP";
 const int mqtt_port = 1883;
 
+```
+# MailBox Sensor Configuration
+
+### MailBox LoRa Configuration
+- In `Mailbox_Guard_Sensor.ino`
+```
+  LoRa.setSignalBandwidth(125E3);         // signal bandwidth in Hz, defaults to 125E3
+  LoRa.setSpreadingFactor(12);                 // ranges from 6-12,default 7 see API docs
+  LoRa.setCodingRate4(8);        // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
+  LoRa.setSyncWord(0xF3);                     // byte value to use as the sync word, defaults to 0x12
+  LoRa.setPreambleLength(8);       //Supported values are between 6 and 65535.
+  LoRa.disableCrc();                          // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc();
+  LoRa.setTxPower(20);                // TX power in dB, defaults to 17, Supported values are 2 to 20
+```
+
+### New Mail and Low Battery code
+- In `Mailbox_Guard_Sensor.ino`
+```
+String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
+String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
 ```
