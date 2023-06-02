@@ -7,7 +7,8 @@
 - - Motion Sensor
 - - Door Window Sensor
 
-- Specifications
+- Sensor Specifications
+- - Microcontroller "Attiny1616"
 - - LoRa Bands "433/868/915"
 - - PIR Sensor AM312 "With option to turn it off"
 - - Onboard reed switch "optional"
