@@ -29,7 +29,7 @@ float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
 ```
 ### MailBox Sensor Code Configuration
 
-- Only in "LoRa_Gateway_OLED.ino" and "LoRa_Gateway_WhatsApp.ino"
+- Only in "LoRa_Gateway_OLED.ino", "LoRa_Gateway_WhatsApp.ino" and "Mailbox_Guard_Sensor.ino"
 ```
 String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
 String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
