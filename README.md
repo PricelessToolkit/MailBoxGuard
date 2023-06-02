@@ -2,30 +2,32 @@
 
 # Universal Long Range LoRa Sensor and Gateway
 ### Can be Integrated into Smart Homes or used offline.
-- Use Cases
-- - Mailbox Sensor
-- - Motion Sensor
-- - Door Window Sensor
+### Use Cases
+- Mailbox Sensor
+- Motion Sensor
+- Door Window Sensor
 
-- Sensor Specifications
-- - Microcontroller "Attiny1616"
-- - LoRa Bands "433/868/915"
-- - PIR Sensor AM312 "With option to turn it off"
-- - Onboard reed switch "optional"
-- - External reed switch "Input 2 Pin"
-- - Battery Holder for "Li-Ion 14500"
-- - Optional 2 Pin SMD LiPo Battery connector
-- - Buid in Battry Charger "Can be separated"
-- - - Connector USB-C
-- - - Charge status LED "Charging,Full"
-- - Extremely Low Power Consumption
-- - - Motion Sensor PIR 11.30uAh
-- - - Only reed switch 0.23uAh
-- - - Every data submission usese 65uA
-- - - TX LED "With option to turn it off"
-- - Size
-- - - With charger "XXmm to XXmm"
-- - - Without charger "XXmm to XXmm"
+### How it works
+
+### Sensor Specifications
+- Microcontroller "Attiny1616"
+- LoRa Bands "433/868/915"
+- PIR Sensor AM312 "With option to turn it off"
+- Onboard reed switch "optional"
+- External reed switch "Input 2 Pin"
+- Battery Holder for "Li-Ion 14500"
+- Optional 2 Pin SMD LiPo Battery connector
+- Buid in Battry Charger "Can be separated"
+- - Connector USB-C
+- - Charge status LED "Charging,Full"
+- Extremely Low Power Consumption
+- - Motion Sensor PIR 11.30uAh
+- - Only reed switch 0.23uAh
+- - Every data submission usese 65uA
+- - TX LED "With option to turn it off"
+- Size
+- - With charger "XXmm to XXmm"
+- - Without charger "XXmm to XXmm"
 
 
 ==============================
