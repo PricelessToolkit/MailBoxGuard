@@ -39,7 +39,7 @@ float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
 3. `LoRa_Gateway_MQTT.ino` Sends a row message and RSSI to MQTT Server
 
 
-### Select TTGO Board Version
+### Select TTGO_LoRa Board Version
 
 - Change the BOARD definition in `board.h` according to the your board Version " 1 = ON / 0 = OFF ".
  ```
@@ -47,7 +47,8 @@ float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
  #define LORA_V1_2_OLED  0
  #define LORA_V1_6_OLED  0
  #define LORA_V2_0_OLED  1
- // https://github.com/Xinyuan-LilyGO/TTGO-LoRa-Series/tree/master
+ 
+ // Pin Information https://github.com/Xinyuan-LilyGO/TTGO-LoRa-Series/tree/master
  ```
 ### Gateway LoRa Radio Configuration
 
