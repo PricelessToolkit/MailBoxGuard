@@ -49,7 +49,7 @@ float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
  #define LORA_V2_0_OLED  1
  ```
  
- ## BOARDS PINS
+ ## TTGO Boards GPIOs
 | Name        | V1.0 | V1.2(T-Fox) | V1.6 | V2.0 |
 | ----------- | ---- | ----------- | ---- | ---- |
 | OLED RST    | 16   | N/A         | N/A  | N/A  |
