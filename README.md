@@ -1,7 +1,25 @@
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/mailbox_guard.jpg"/>
 
-## LoRa MailBox Sensor and LoRa Gateway
+# Universal Long Range LoRa Sensor and Gateway
+### Can be Integrated into Smart Homes or used offline.
+- Use Cases
+- - Mailbox Sensor
+- - Motion Sensor
+- - Door Window Sensor
 
+- Specifications
+- - LoRa Bands "433/868/915"
+- - PIR Sensor AM312 "With option to turn off"
+- - Onboard reed switch "optional"
+- - External reed switch "Input 2 Pin"
+- - Battery Holder for "Li-Ion 14500"
+- - Optional 2 Pin LiPo Battery connector
+- - Buid in Battry Charger "Can be separated"
+- - - Connector USB-C
+- - Extremaly Low Power Concumption
+- - - PIR 11.30uAh
+- - - Only reed switch 0.23uAh
+- - - Every data submission usese 65uA
 
 
 ==============================
