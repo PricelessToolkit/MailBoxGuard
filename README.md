@@ -27,3 +27,21 @@
 #define TxPower 20
 float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
 ```
+
+### WiFi Configuration
+- Only in "LoRa_Gateway_MQTT.ino" and "LoRa_Gateway_WhatsApp.ino"
+```
+const char* ssid = "Your_WIFI_SSID";
+const char* password = "Your_WIFI_password";
+
+```
+### MQTT Configuration
+
+- Only in "LoRa_Gateway_MQTT.ino"
+```
+const char* mqtt_username = "Your_mqtt_username";
+const char* mqtt_password = "Your_mqtt_password";
+const char* mqtt_server = "Your_mqtt/homeassistant server IP";
+const int mqtt_port = 1883;
+
+```
