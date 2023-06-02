@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/mailbox_guard.jpg" width="1500" height="629" />
+
 ## LoRa MailBox Sensor and LoRa Gateway
 
 
