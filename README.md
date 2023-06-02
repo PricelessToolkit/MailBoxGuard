@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/mailbox_guard.jpg"/>
 
-# Universal Long Range LoRa Sensor and Gateway
-### Can be Integrated into Smart Homes or used offline.
+# Long Range "LoRa" Universal MailBox Sensor
+### Can be Integrated into Smart Homes, Receive notifications via WhatsApp, or be used offline.
 ### Use Cases
 - Mailbox Sensor - "Code examples are provided"
 - Motion Sensor
