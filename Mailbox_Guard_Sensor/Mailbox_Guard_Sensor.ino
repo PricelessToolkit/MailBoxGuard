@@ -60,7 +60,7 @@ void loop() {
 
   if (volts < 3.36 and loopcounter == 1 ){   // Don't change "3.36" !!
     LoRa.beginPacket();
-    LoRa.print(LowBatteryCode);   //  Your low Battery key here <---------------- Change This ! ----------------------
+    LoRa.print(LowBatteryCode);
     LoRa.endPacket();
     delay(50);
   }
