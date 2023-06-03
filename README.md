@@ -57,6 +57,21 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 # MailBox Sensor Configuration
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"  width="600" height="398" />
 
+
+### Frequency Configuration
+- In `Mailbox_Guard_Sensor.ino`
+- The settings in the gateway and in the sensor must match.
+```
+#define BAND 868E6 // 433E6 / 868E6 / 915E6 /
+```
+
+### New Mail and Low Battery Key
+- In `Mailbox_Guard_Sensor.ino`
+```
+String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
+String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
+```
+
 ### MailBox LoRa Radio Configuration
 - In `Mailbox_Guard_Sensor.ino`
 - - The settings in the gateway and in the sensor must match.
@@ -70,18 +85,6 @@ The Mailbox Guard is a device that detects when a new letter or package has been
   LoRa.setTxPower(20);                // TX power in dB, defaults to 17, Supported values are 2 to 20
 ```
 
-### New Mail and Low Battery Key
-- In `Mailbox_Guard_Sensor.ino`
-```
-String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
-String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
-```
-
-### Frequency Configuration
-- The settings in the gateway and in the sensor must match.
-```
-#define BAND 868E6 // 433E6 / 868E6 / 915E6 /
-```
 # Gateway Configuration
 
 ### Choosing Firmware for LoRa Gateway
