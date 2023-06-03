@@ -80,7 +80,7 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 ### Frequency Configuration
 - The settings in the gateway and in the sensor must match.
 ```
-float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
+#define BAND 868E6 // 433E6 / 868E6 / 915E6 /
 ```
 # Gateway Configuration
 
