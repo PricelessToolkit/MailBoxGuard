@@ -46,7 +46,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 - Additional Boards Manager URLs
 - - https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
-- - http://drazzy.com/package_drazzy.com_index.json
+- - megaTinyCore http://drazzy.com/package_drazzy.com_index.json
 
 - Libraries Used
 - - LoRa
