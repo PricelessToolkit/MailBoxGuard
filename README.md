@@ -54,6 +54,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - - SSD1306
 - - UrlEncode
 
+<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"/>
 
 # MailBox Sensor Configuration
 
