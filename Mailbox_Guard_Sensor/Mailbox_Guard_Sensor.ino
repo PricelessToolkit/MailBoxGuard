@@ -8,7 +8,7 @@
 
 //////////////////////////////////// CONFIG /////////////////////////////////////////////
 
-#define BAND 868E6 // 433E6 / 868E6 / 915E6 /
+#define BAND 868E6     // frequency in Hz (ASIA 433E6, EU 868E6, US 915E6)
 String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
 String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
 
