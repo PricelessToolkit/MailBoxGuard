@@ -62,7 +62,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - In `Mailbox_Guard_Sensor.ino`
 - The settings in the gateway and in the sensor must match.
 ```
-#define BAND 868E6 // 433E6 / 868E6 / 915E6 /
+#define BAND 868E6 // frequency in Hz (ASIA 433E6, EU 868E6, US 915E6)
 ```
 
 ### New Mail and Low Battery Key
