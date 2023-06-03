@@ -8,7 +8,6 @@
 
 //////////////////////////////////// CONFIG /////////////////////////////////////////////
 
-
 #define BAND 868E6 // 433E6 / 868E6 / 915E6 /
 String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
 String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
