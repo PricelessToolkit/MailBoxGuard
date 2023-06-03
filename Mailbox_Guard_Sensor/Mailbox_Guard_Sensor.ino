@@ -24,18 +24,18 @@ void setup() {
   delay (5);
 
 
-  if (!LoRa.begin(BAND)) {                         // frequency in Hz (ASIA 433E6, EU 868E6, US 915E6)
+  if (!LoRa.begin(BAND)) {
     Serial.println("LoRaError");
     while (1);
   }
 
   LoRa.setSignalBandwidth(125E3);         // signal bandwidth in Hz, defaults to 125E3
-  LoRa.setSpreadingFactor(12);                 // ranges from 6-12,default 7 see API docs
-  LoRa.setCodingRate4(8);        // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
-  LoRa.setSyncWord(0xF3);                     // byte value to use as the sync word, defaults to 0x12
-  LoRa.setPreambleLength(8);       //Supported values are between 6 and 65535.
-  LoRa.disableCrc();                          // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc();
-  LoRa.setTxPower(20);                // TX power in dB, defaults to 17, Supported values are 2 to 20
+  LoRa.setSpreadingFactor(12);            // ranges from 6-12,default 7 see API docs
+  LoRa.setCodingRate4(8);                 // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
+  LoRa.setSyncWord(0xF3);                 // byte value to use as the sync word, defaults to 0x12
+  LoRa.setPreambleLength(8);              //Supported values are between 6 and 65535.
+  LoRa.disableCrc();                      // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc();
+  LoRa.setTxPower(20);                    // TX power in dB, defaults to 17, Supported values are 2 to 20
 
 
 
