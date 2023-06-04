@@ -1,6 +1,7 @@
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/mailbox_guard.jpg"/>
 
 # Long Range "LoRa" Universal MailBox Sensor
+!!! Files for self-assembling will be after July !!!
 ### Can be Integrated into Smart Homes, Receive notifications via WhatsApp, or be used offline.
 ### Use Cases
 - Mailbox Sensor - "Code examples are provided"
