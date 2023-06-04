@@ -95,7 +95,7 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 
 ### Select TTGO_LoRa Board Version
 
-- Change the BOARD definition in `board.h` according to the your board Version " 1 = ON / 0 = OFF ".
+- Change the BOARD definition in `board.h` according to the your board Version " 1 = ENABLE / 0 = DISABLE ".
  ```
  #define LORA_V1_0_OLED  0
  #define LORA_V1_2_OLED  0
