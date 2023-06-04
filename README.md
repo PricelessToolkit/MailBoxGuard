@@ -21,21 +21,22 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - - Gateway [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DCnmcvP)
 
 ### Sensor Specifications
+
 - Microcontroller "Attiny1616"
 - LoRa Bands "433/868/915"
-- PIR Sensor AM312 "With option to turn it off"
+- PIR Sensor AM312 "With the option to turn it off"
 - Onboard reed switch "optional"
 - External reed switch "Input 2 Pin"
 - Battery Holder for "Li-Ion 14500"
 - Optional 2 Pin SMD LiPo Battery connector
-- Buid in Battry Charger "Can be separated"
+- Build-in Battery Charger "Can be separated"
 - - Connector USB-C
-- - Charge status LED "Charging,Full"
+- - Charge status LED "Charging, Full"
 - Extremely Low Power Consumption
 - - Motion Sensor PIR 11.30uAh
 - - Only reed switch 0.23uAh
-- - Every data submission usese 65uA
-- - TX LED "With option to turn it off"
+- - Every data submission uses 65uA
+- - TX LED "With the option to turn it off"
 - Size
 - - With charger "XXmm to XXmm"
 - - Without charger "XXmm to XXmm"
