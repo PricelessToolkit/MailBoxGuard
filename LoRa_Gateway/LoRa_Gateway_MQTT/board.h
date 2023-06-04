@@ -32,7 +32,7 @@
 // !    You need to change the frequency according to the board.
 
 
-#if LORA_V1_3_OLED
+#elif LORA_V1_3_OLED
 #include <Wire.h> 
 #include "SSD1306Wire.h" 
 #define OLED_CLASS_OBJ  SSD1306Wire
