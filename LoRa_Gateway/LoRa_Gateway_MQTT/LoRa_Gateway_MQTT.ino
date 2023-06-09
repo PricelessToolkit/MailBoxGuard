@@ -25,6 +25,7 @@ const char* mqtt_username = "Your_mqtt_username";
 const char* mqtt_password = "Your_mqtt_password";
 const char* mqtt_server = "Your_mqtt/homeassistant server IP";
 const int mqtt_port = 1883;
+bool retain = true;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -145,9 +146,9 @@ void loop(){
 
         Serial.println(recv);
         if (client.connected()) {
-          client.publish("LoRa-Gateway/Code", String(recv).c_str());
+          client.publish("LoRa-Gateway/Code", String(recv).c_str(), retain);
           String rs = String(LoRa.packetRssi());
-          client.publish("LoRa-Gateway/RSSI", rs.c_str());
+          client.publish("LoRa-Gateway/RSSI", rs.c_str(), retain);
           client.endPublish();
         }
 
