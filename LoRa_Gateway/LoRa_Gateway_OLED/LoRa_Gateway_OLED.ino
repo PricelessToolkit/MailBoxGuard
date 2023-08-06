@@ -15,8 +15,8 @@ SSD1306Wire display(OLED_ADDRESS, OLED_SDA, OLED_SCL);
 #define TxPower 20
 float BAND = 868E6;  // 868E6 / 915E6 / 433E6
 
-String NewMailCode = "0xA2B2";
-String LowBatteryCode = "0xLBAT";
+String NewMailCode = "0xAAAA";
+String LowBatteryCode = "0xFFFF";
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

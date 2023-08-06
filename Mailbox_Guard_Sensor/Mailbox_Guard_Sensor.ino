@@ -8,9 +8,15 @@
 
 //////////////////////////////////// CONFIG /////////////////////////////////////////////
 
+#define SignalBandwidth 125E3
+#define SpreadingFactor 12
+#define CodingRate 8
+#define SyncWord 0xF3
+#define PreambleLength 8
+#define TxPower 20
 #define BAND 868E6     // frequency in Hz (ASIA 433E6, EU 868E6, US 915E6)
-String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
-String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
+String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xAAAA";
+String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xFFFF";
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -29,13 +35,13 @@ void setup() {
     while (1);
   }
 
-  LoRa.setSignalBandwidth(125E3);         // signal bandwidth in Hz, defaults to 125E3
-  LoRa.setSpreadingFactor(12);            // ranges from 6-12,default 7 see API docs
-  LoRa.setCodingRate4(8);                 // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
-  LoRa.setSyncWord(0xF3);                 // byte value to use as the sync word, defaults to 0x12
-  LoRa.setPreambleLength(8);              //Supported values are between 6 and 65535.
-  LoRa.disableCrc();                      // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc();
-  LoRa.setTxPower(20);                    // TX power in dB, defaults to 17, Supported values are 2 to 20
+  LoRa.setSignalBandwidth(SignalBandwidth);         // signal bandwidth in Hz, defaults to 125E3
+  LoRa.setSpreadingFactor(SpreadingFactor);                 // ranges from 6-12,default 7 see API docs
+  LoRa.setCodingRate4(CodingRate);        // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
+  LoRa.setSyncWord(SyncWord);                     // byte value to use as the sync word, defaults to 0x12
+  LoRa.setPreambleLength(PreambleLength);       //Supported values are between 6 and 65535.
+  LoRa.disableCrc();                          // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc();
+  LoRa.setTxPower(TxPower);                // TX power in dB, defaults to 17, Supported values are 2 to 20
 
 
 
