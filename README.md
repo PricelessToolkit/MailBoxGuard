@@ -36,7 +36,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - - Charge status LED "Charging, Full"
 - Extremely Low Power Consumption
 - - Motion Sensor PIR 11.30uAh
-- - Only reed switch 0.23uAh
+- - Only reed switch 280nAh
 - - Every data submission uses 65uA
 - - TX LED "With the option to turn it off"
 - Size
