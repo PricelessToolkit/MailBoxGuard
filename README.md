@@ -12,13 +12,13 @@
 The Mailbox Guard is a device that detects when a new letter or package has been delivered to your mailbox using a PIR sensor and door reed switch. It can send a signal to your LoRa gateway, then the gateway sends a message via WiFi to `Home Assistant "MQTT"` or to `WhatsApp` allowing you to receive notifications directly into your phone. Or you can use it offline, the gateway display will show the number of letters received, Battery status, and signal strength.
 
 ### Links
-- How To
-- - YouTube video https://... "Not Ready"
-- PricelessToolkit IoT Shop
-- - MailBox Sensor [MailBox Guard](https://www.pricelesstoolkit.com/)
-- - Serial2UPDI/ESP Programmer [UNIPROG](https://www.pricelesstoolkit.com/)
-- Aliexpress
-- - Gateway [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DCnmcvP)
+
+- - YouTube video https://youtu.be/gf1WWKyEnbg
+- - Mailbox Sensor [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/34-41-mailbox-guard-wireless-ir-sensor.html)
+- - UNIProg Programmer [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/33-uniprog-uartupdi-programmer-33v.html)
+
+- - Gateway on Aliexpress [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DdCLj19) 
+- - Gateway on official lilygo Shop [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://www.lilygo.cc/qcxgpu)
 
 ### Sensor Specifications
 
@@ -40,6 +40,9 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - Size
 - - With charger "XXmm to XXmm"
 - - Without charger "XXmm to XXmm"
+ 
+  - Hardware requirements
+  - - UPDI Programmer
 
 
 ==============================
