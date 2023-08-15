@@ -40,9 +40,8 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - Size
 - - With charger "XXmm to XXmm"
 - - Without charger "XXmm to XXmm"
- 
-  - Hardware requirements
-  - - UPDI Programmer
+- Programming Protocol
+- - UPDI / Serial2UPDI
 
 
 ==============================
@@ -82,7 +81,7 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 - - The settings in the gateway and in the sensor must match.
 ```
   LoRa.setSignalBandwidth(125E3);         // signal bandwidth in Hz, defaults to 125E3
-  LoRa.setSpreadingFactor(12);            // ranges from 6-12,default 7 see API docs
+  LoRa.setSpreadingFactor(12);            // ranges from 6-12, default 7 see API docs
   LoRa.setCodingRate4(8);                 // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
   LoRa.setSyncWord(0xF3);                 // byte value to use as the sync word, defaults to 0x12
   LoRa.setPreambleLength(8);              //Supported values are between 6 and 65535.
@@ -93,14 +92,14 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 # Gateway Configuration
 
 ### Choosing Firmware for LoRa Gateway
-1. `LoRa_Gateway_OLED.ino` "For offline use" Display turns on and shows that there is a new letter in the mailbox "number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
-2. `LoRa_Gateway_WhatsApp.ino` - `NOT TESTED YET` Sends a message to WhatsApp "You Have New Mail".
+1. `LoRa_Gateway_OLED.ino` "For offline use" Display turns on and shows that there is a new letter in the mailbox "the number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
+2. `LoRa_Gateway_WhatsApp.ino` -  Sends a message to WhatsApp "You Have New Mail".
 3. `LoRa_Gateway_MQTT.ino` Sends a row message and RSSI to MQTT Server.
 
 
 ### Select TTGO_LoRa Board Version
 
-- Change the BOARD definition in `board.h` according to the your board Version " 1 = ENABLE / 0 = DISABLE ".
+- Change the BOARD definition in `board.h` according to your gateway Version " 1 = ENABLE / 0 = DISABLE ".
  ```
  #define LORA_V1_0_OLED  0
  #define LORA_V1_2_OLED  0
@@ -110,7 +109,7 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
  ```
  
  ## TTGO Boards GPIOs
-| Name        | V1.0 | V1.2(T-Fox) | V1.3 | V1.6 | V2.0 |
+| Name        | V1.0 | V1.2(T-Fox) | V1.3 | V1.6 | V2.1 |
 | ----------- | ---- | ----------- |------| ---- | ---- |
 | OLED RST    | 16   | N/A         | N/A  | N/A  | N/A  |
 | OLED SDA    | 4    | 21          | 4    | 21   | 21   |
