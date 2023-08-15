@@ -1,8 +1,10 @@
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/mailbox_guard.jpg"/>
 
+If you value the effort I've put into crafting this open-source project and would like to show your support, consider subscribing to my YouTube channel. Your subscription goes a long way in backing my work.
+
 # Long Range "LoRa" Universal MailBox Sensor
-!!! Files for self-assembling will be after July !!!
-### Can be Integrated into Smart Homes, Receive notifications via WhatsApp, or be used offline.
+
+### Can be Integrated into Home Assistant, receive notifications via WhatsApp, or be used offline.
 ### Use Cases
 - Mailbox Sensor - "Code examples are provided"
 - Motion Sensor
