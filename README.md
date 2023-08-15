@@ -16,8 +16,9 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 ### Links
 
 - - YouTube video https://youtu.be/gf1WWKyEnbg
-- - Mailbox Sensor [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/34-41-mailbox-guard-wireless-ir-sensor.html)
-- - UNIProg Programmer [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/33-uniprog-uartupdi-programmer-33v.html)
+  -  My Shop
+  - - Mailbox Sensor [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/34-41-mailbox-guard-wireless-ir-sensor.html)
+  - - UNIProg Programmer [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/33-uniprog-uartupdi-programmer-33v.html)
 
 - - Gateway on Aliexpress [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DdCLj19) 
 - - Gateway on official lilygo Shop [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://www.lilygo.cc/qcxgpu)
@@ -43,7 +44,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - - With charger "XXmm to XXmm"
 - - Without charger "XXmm to XXmm"
 - Programming Protocol
-- - UPDI / Serial2UPDI
+- - UPDI / Serial2UPDI 
 
 
 ==============================
@@ -57,6 +58,8 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 
 # Arduino Setup "IDE 2.0.x unsupported"
+
+For programming MailBox Guard, you can use my other open-source project "UNIProg Programmer" [GitHub](https://github.com/PricelessToolkit/UNIProg_Programmer) 
 
 - Additional Boards Manager URLs
 - - ESP32 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
