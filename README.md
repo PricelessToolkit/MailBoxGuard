@@ -46,7 +46,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 ==============================
 
-# Battery Polarity
+# ⚠️ Battery Polarity ⚠️
 - - Before connecting the battery, make sure to check the connector polarity on your battery. This is especially important because many 1S LiPo batteries have inverted polarity.
 
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/Polarity.jpg" width="600" height="340"/>
