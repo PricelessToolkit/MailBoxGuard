@@ -48,7 +48,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 # Battery Polarity
 
-<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/Polarity.jpg"/>
+<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/Polarity.jpg" width="600" height="340"/>
 
 
 
