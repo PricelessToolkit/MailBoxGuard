@@ -46,6 +46,13 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 ==============================
 
+# Battery Polarity
+
+<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/Polarity.jpg"/>
+
+
+
+
 # Arduino Setup "IDE 2.0.x unsupported"
 
 - Additional Boards Manager URLs
