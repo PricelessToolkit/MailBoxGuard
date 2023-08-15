@@ -1,8 +1,10 @@
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/mailbox_guard.jpg"/>
 
+🤗 If you value the effort I've put into crafting this open-source project and would like to show your support, consider subscribing to my [YouTube channel](https://www.youtube.com/@PricelessToolkit/videos). Your subscription goes a long way in backing my work.
+
 # Long Range "LoRa" Universal MailBox Sensor
-!!! Files for self-assembling will be after July !!!
-### Can be Integrated into Smart Homes, Receive notifications via WhatsApp, or be used offline.
+
+### Can be Integrated into Home Assistant, receive notifications via WhatsApp, or be used offline.
 ### Use Cases
 - Mailbox Sensor - "Code examples are provided"
 - Motion Sensor
@@ -12,13 +14,13 @@
 The Mailbox Guard is a device that detects when a new letter or package has been delivered to your mailbox using a PIR sensor and door reed switch. It can send a signal to your LoRa gateway, then the gateway sends a message via WiFi to `Home Assistant "MQTT"` or to `WhatsApp` allowing you to receive notifications directly into your phone. Or you can use it offline, the gateway display will show the number of letters received, Battery status, and signal strength.
 
 ### Links
-- How To
-- - YouTube video https://... "Not Ready"
-- PricelessToolkit IoT Shop
-- - MailBox Sensor [MailBox Guard](https://www.pricelesstoolkit.com/)
-- - Serial2UPDI/ESP Programmer [UNIPROG](https://www.pricelesstoolkit.com/)
-- Aliexpress
-- - Gateway [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DCnmcvP)
+
+- - YouTube video https://youtu.be/gf1WWKyEnbg
+- - Mailbox Sensor [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/34-41-mailbox-guard-wireless-ir-sensor.html)
+- - UNIProg Programmer [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/33-uniprog-uartupdi-programmer-33v.html)
+
+- - Gateway on Aliexpress [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DdCLj19) 
+- - Gateway on official lilygo Shop [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://www.lilygo.cc/qcxgpu)
 
 ### Sensor Specifications
 
@@ -34,15 +36,25 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - - Charge status LED "Charging, Full"
 - Extremely Low Power Consumption
 - - Motion Sensor PIR 11.30uAh
-- - Only reed switch 0.23uAh
+- - Only reed switch 280nAh
 - - Every data submission uses 65uA
 - - TX LED "With the option to turn it off"
 - Size
 - - With charger "XXmm to XXmm"
 - - Without charger "XXmm to XXmm"
+- Programming Protocol
+- - UPDI / Serial2UPDI
 
 
 ==============================
+
+# ⚠️ Battery Polarity ⚠️
+- - Before connecting the battery, make sure to check the connector polarity on your battery. This is especially important because many 1S LiPo batteries have inverted polarity.
+
+<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/Polarity.jpg" width="600" height="340"/>
+
+
+
 
 # Arduino Setup "IDE 2.0.x unsupported"
 
@@ -79,7 +91,7 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 - - The settings in the gateway and in the sensor must match.
 ```
   LoRa.setSignalBandwidth(125E3);         // signal bandwidth in Hz, defaults to 125E3
-  LoRa.setSpreadingFactor(12);            // ranges from 6-12,default 7 see API docs
+  LoRa.setSpreadingFactor(12);            // ranges from 6-12, default 7 see API docs
   LoRa.setCodingRate4(8);                 // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
   LoRa.setSyncWord(0xF3);                 // byte value to use as the sync word, defaults to 0x12
   LoRa.setPreambleLength(8);              //Supported values are between 6 and 65535.
@@ -90,14 +102,14 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 # Gateway Configuration
 
 ### Choosing Firmware for LoRa Gateway
-1. `LoRa_Gateway_OLED.ino` "For offline use" Display turns on and shows that there is a new letter in the mailbox "number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
-2. `LoRa_Gateway_WhatsApp.ino` - `NOT TESTED YET` Sends a message to WhatsApp "You Have New Mail".
+1. `LoRa_Gateway_OLED.ino` "For offline use" Display turns on and shows that there is a new letter in the mailbox "the number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
+2. `LoRa_Gateway_WhatsApp.ino` -  Sends a message to WhatsApp "You Have New Mail".
 3. `LoRa_Gateway_MQTT.ino` Sends a row message and RSSI to MQTT Server.
 
 
 ### Select TTGO_LoRa Board Version
 
-- Change the BOARD definition in `board.h` according to the your board Version " 1 = ENABLE / 0 = DISABLE ".
+- Change the BOARD definition in `board.h` according to your gateway Version " 1 = ENABLE / 0 = DISABLE ".
  ```
  #define LORA_V1_0_OLED  0
  #define LORA_V1_2_OLED  0
@@ -107,7 +119,7 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
  ```
  
  ## TTGO Boards GPIOs
-| Name        | V1.0 | V1.2(T-Fox) | V1.3 | V1.6 | V2.0 |
+| Name        | V1.0 | V1.2(T-Fox) | V1.3 | V1.6 | V2.1 |
 | ----------- | ---- | ----------- |------| ---- | ---- |
 | OLED RST    | 16   | N/A         | N/A  | N/A  | N/A  |
 | OLED SDA    | 4    | 21          | 4    | 21   | 21   |
