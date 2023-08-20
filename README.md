@@ -182,14 +182,16 @@ const int mqtt_port = 1883;
 
 # Home Assistant Configuration
 
+If MQTT discovery has not been disabled, the device will appear automatically. Otherwise, you will need to manually create the sensor.
+
 ### Create a Sensor
 - File `loragateway.yaml`
 ```
 mqtt:
     sensor:
      - name: "LoRa_Code"
-       state_topic: "LoRa-Gateway/Code"
+       state_topic: "homeassistant/binary_sensor/mailbox/state"
 
      - name: "LoRa_RSSI"
-       state_topic: "LoRa-Gateway/RSSI"
+       state_topic: "homeassistant/sensor/mailbox/state"
 ```

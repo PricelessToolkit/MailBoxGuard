@@ -62,6 +62,20 @@ void reconnect() {
     // Attempt to connect
     if (client.connect(clientId.c_str(), mqtt_username, mqtt_password)) {
       Serial.println("MQTT connected");
+      
+      // Send auto-discovery message for sensor
+      client.publish(
+        "homeassistant/binary_sensor/mailbox/config",
+        "{\"name\":null,\"device_class\":\"door\",\"icon\":\"mdi:mailbox\",\"state_topic\":\"homeassistant/binary_sensor/mailbox/state\",\"unique_id\":\"mailbox_sensor\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
+        retain
+      );
+      
+      // Send auto-discovery message for signal
+      client.publish(
+        "homeassistant/sensor/mailbox/config",
+        "{\"name\":\"RSSI\",\"device_class\":\"signal_strength\",\"icon\":\"mdi:signal\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/sensor/mailbox/state\",\"unique_id\":\"mailbox_signal\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
+        retain
+      );
     } else {
       Serial.print("MQTT failed, rc=");
       Serial.print(client.state());
@@ -121,9 +135,9 @@ void loop() {
 
     Serial.println(recv);
     if (client.connected()) {
-      client.publish("LoRa-Gateway/Code", String(recv).c_str(), retain);
+      client.publish("homeassistant/binary_sensor/mailbox/state", String(recv).c_str(), retain);
       String rs = String(LoRa.packetRssi());
-      client.publish("LoRa-Gateway/RSSI", rs.c_str(), retain);
+      client.publish("homeassistant/sensor/mailbox/state", rs.c_str(), retain);
       client.endPublish();
     }
   }
