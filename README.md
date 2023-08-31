@@ -59,7 +59,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 
 
-## Mailbox Sensor Programming
+# Mailbox Sensor Programming
 
 For programming MailBox Guard, you can use my other open-source project "UNIProg Programmer" [GitHub](https://github.com/PricelessToolkit/UNIProg_Programmer) 
 
