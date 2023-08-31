@@ -59,9 +59,19 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 
 
-# Arduino Setup "IDE 2.0.x unsupported"
+## Mailbox Sensor Programming
 
 For programming MailBox Guard, you can use my other open-source project "UNIProg Programmer" [GitHub](https://github.com/PricelessToolkit/UNIProg_Programmer) 
+
+### Connection Diagram
+
+| UNIProg | MailBox Guard |
+|    -    |    -   |
+|   GND   |   GND  |
+|   3v3   |   3v3  |
+|   UPD   |   UPD  |
+
+# Arduino Setup "IDE 2.0.x unsupported"
 
 - Additional Boards Manager URLs
 - - ESP32 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
@@ -70,7 +80,7 @@ For programming MailBox Guard, you can use my other open-source project "UNIProg
 - Libraries Used
 - - LoRa
 - - PubSubClient
-- - SSD1306
+- - ESP8266 and ESP32 OLED driver for SSD1306 displays
 - - UrlEncode
 
 # MailBox Sensor Configuration
