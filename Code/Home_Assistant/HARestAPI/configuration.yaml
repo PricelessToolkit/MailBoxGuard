@@ -1,0 +1,7 @@
+input_boolean:
+  mailbox_guard_motion:
+    name: Mailbox Guard Motion
+    icon: mdi:mail
+  mailbox_guard_low_battery:
+    name: Mailbox Guard Low Battery
+    icon: mdi:battery
