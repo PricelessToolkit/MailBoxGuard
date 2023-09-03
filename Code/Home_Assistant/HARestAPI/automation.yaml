@@ -1,0 +1,26 @@
+- id: "1693702614043"
+  alias: Mailbox Guard Motion
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: input_boolean.mailbox_guard_motion
+      to: "on"
+  condition: []
+  action:
+    - service: notify.notify
+      data:
+        message: You've Got Mail!
+  mode: single
+- id: "1693703621871"
+  alias: Mailbox Guard Low Battery
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: input_boolean.mailbox_guard_low_battery
+      to: "on"
+  condition: []
+  action:
+    - service: notify.notify
+      data:
+        message: Mailbox Guard Low Battery!
+  mode: single
