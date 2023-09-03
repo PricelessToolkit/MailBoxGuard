@@ -84,7 +84,7 @@ For programming MailBox Guard, you can use my other open-source project "UNIProg
   - PubSubClient
   - ESP8266 and ESP32 OLED driver for SSD1306 displays
   - UrlEncode
-  - Sketch > Include Library > Add .ZIP Library...
+  - HARestAPI "Sketch > Include Library > Add .ZIP Library..."
     - https://github.com/debsahu/HARestAPI
 
 # MailBox Sensor Configuration
