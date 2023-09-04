@@ -10,6 +10,13 @@
     - service: notify.notify
       data:
         message: You've Got Mail!
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.mailbox_guard_count
+        value: "{{ (states.input_number.mailbox_guard_count.state | int) + 1 }}"
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.mailbox_guard_motion
   mode: single
 - id: "1693703621871"
   alias: Mailbox Guard Low Battery

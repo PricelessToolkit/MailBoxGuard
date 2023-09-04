@@ -302,10 +302,51 @@ input_number:
   mode: single
 ```
 
+- Dashboard card
+
+```yaml
+type: entities
+title: Mailbox Guard
+show_header_toggle: false
+entities:
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_count
+      name: Motion Count
+  - type: button
+    icon: mdi:mail
+    name: Reset Count
+    action_name: RESET
+    tap_action:
+      action: call-service
+      service: input_number.set_value
+      data:
+        entity_id: input_number.mailbox_guard_count
+        value: 0
+  - entity: input_boolean.mailbox_guard_low_battery
+    name: Low Battery
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_rssi
+      name: RSSI
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_snr
+      name: SNR
+```
+
 ### MailBox Guard motion detection events
 
-1. Your phone receives a notification from HA
-2. The MailBox Guard switch will turn on
-3. Turn the switch off to manually reset
+1. Your phone receives a notification from HA `You've Got Mail!`
+2. The MailBox Guard will add a count to the `Motion Count`
+3. When you fetch the mail select the `RESET` button
+
+![](/img/HARestAPI_Notify.png)
 
 ![](/img/HARestAPI.png)
