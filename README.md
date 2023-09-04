@@ -191,7 +191,7 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 
 ### WiFi Configuration
 
-- In `LoRa_Gateway_MQTT.ino` and `LoRa_Gateway_WhatsApp.ino`
+- In `LoRa_Gateway_MQTT.ino`, `LoRa_Gateway_HAResetAPI.ino` and `LoRa_Gateway_WhatsApp.ino`
 
 ```c
 const char* ssid = "Your_WIFI_SSID";
@@ -212,7 +212,7 @@ const int mqtt_port = 1883;
 ## HARestAPI Configuration
 
 - Open `LoRa_Gateway_HAResetAPI.ino`
-- For the password go to your User Profile > Long-Lived Access Tokens > Create Token
+- For the `ha_pwd` go to your User Profile > Long-Lived Access Tokens > Create Token
 
 ```c
 const char* ha_ip = "192.168.0.xxx";
@@ -252,6 +252,23 @@ input_boolean:
   mailbox_guard_low_battery:
     name: Mailbox Guard Low Battery
     icon: mdi:battery
+
+input_number:
+  mailbox_guard_count:
+    name: Mailbox Guard Count
+    min: 0
+    max: 255
+    icon: mdi:mail
+  mailbox_guard_rssi:
+    name: Mailbox Guard RSSI
+    min: -196
+    max: 63
+    icon: mdi:signal
+  mailbox_guard_snr:
+    name: Mailbox Guard SNR
+    min: -32.0
+    max: 32.0
+    icon: mdi:waves
 ```
 
 - File `automation.yaml`
@@ -269,6 +286,13 @@ input_boolean:
     - service: notify.notify
       data:
         message: You've Got Mail!
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.mailbox_guard_count
+        value: "{{ (states.input_number.mailbox_guard_count.state | int) + 1 }}"
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.mailbox_guard_motion
   mode: single
 - id: "1693703621871"
   alias: Mailbox Guard Low Battery
@@ -285,16 +309,51 @@ input_boolean:
   mode: single
 ```
 
+- Dashboard card
+
+```yaml
+type: entities
+title: Mailbox Guard
+show_header_toggle: false
+entities:
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_count
+      name: Motion Count
+  - type: button
+    icon: mdi:sync
+    name: Reset Count
+    action_name: RESET
+    tap_action:
+      action: call-service
+      service: input_number.set_value
+      data:
+        entity_id: input_number.mailbox_guard_count
+        value: 0
+  - entity: input_boolean.mailbox_guard_low_battery
+    name: Low Battery
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_rssi
+      name: RSSI
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_snr
+      name: SNR
+```
+
 ### MailBox Guard motion detection events
 
-1. Your phone receives a notification from HA
+1. Your phone receives a notification from HA `You've Got Mail!`
+2. The MailBox Guard will add a count to the `Motion Count`
+3. When you fetch the mail select the `RESET` button
 
-![](/img/HARestAPI01.png)
+![](/img/HARestAPI_Notify.png)
 
-2. The MailBox Guard switch will turn on
-
-![](/img/HARestAPI02.png)
-
-3. Turn the switch off to manually reset
-
-![](/img/HARestAPI03.png)
+![](/img/HARestAPI.png)
