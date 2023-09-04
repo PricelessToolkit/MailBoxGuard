@@ -323,7 +323,7 @@ entities:
       entity: input_number.mailbox_guard_count
       name: Motion Count
   - type: button
-    icon: mdi:mail
+    icon: mdi:sync
     name: Reset Count
     action_name: RESET
     tap_action:
