@@ -10,7 +10,7 @@
 
 #define SignalBandwidth 125E3
 #define SpreadingFactor 12
-#define TransmitBattPercent 0
+#define TransmitBattPercent 0  // Enable if using MQTT Auto Discovery Gateway for Homeassistant
 #define CodingRate 8
 #define SyncWord 0xF3
 #define PreambleLength 8

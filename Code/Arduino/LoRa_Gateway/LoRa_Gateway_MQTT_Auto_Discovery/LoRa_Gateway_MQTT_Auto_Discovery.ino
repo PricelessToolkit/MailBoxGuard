@@ -27,6 +27,8 @@ bool retain = true;
 String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
 String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
 
+// IMPORTANT: Set TransmitBattPercent to 1 in the Sensor Config!
+
 String bat_val = "";
 String received_code = "";
 
