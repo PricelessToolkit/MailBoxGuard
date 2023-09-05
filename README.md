@@ -224,9 +224,7 @@ const char* ha_pwd = "HA_PASSWORD";
 
 ## MQTT
 
-MQTT autodiscovery is not working yet
-
-### Create a Sensor only For 'LoRa_Gateway_MQTT_Simple.ino'
+### Create a Sensor only For 'LoRa_Gateway_MQTT_Simple.ino', for 'LoRa_Gateway_MQTT_Auto_Discovery.ino' it's not required.
 
 - File `loragateway.yaml`
 
