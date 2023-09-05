@@ -10,6 +10,7 @@
 
 #define SignalBandwidth 125E3
 #define SpreadingFactor 12
+#define TransmitBattPercent 0
 #define CodingRate 8
 #define SyncWord 0xF3
 #define PreambleLength 8
@@ -58,7 +59,12 @@ void loop() {
   if (loopcounter < 2){
     delay(50);
     LoRa.beginPacket();
-    LoRa.print(NewMailCode);
+    if(TransmitBattPercent){
+      float perc = map(volts, 3.6, 4.2, 0, 100);
+      LoRa.print(NewMailCode + "," + perc);
+    } else{
+      LoRa.print(NewMailCode);
+    }
     LoRa.endPacket();
     delay (10);
 
