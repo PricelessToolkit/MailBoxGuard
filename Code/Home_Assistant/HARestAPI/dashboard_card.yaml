@@ -1,0 +1,34 @@
+type: entities
+title: Mailbox Guard
+show_header_toggle: false
+entities:
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_count
+      name: Motion Count
+  - type: button
+    icon: mdi:sync
+    name: Reset Count
+    action_name: RESET
+    tap_action:
+      action: call-service
+      service: input_number.set_value
+      data:
+        entity_id: input_number.mailbox_guard_count
+        value: 0
+  - entity: input_boolean.mailbox_guard_low_battery
+    name: Low Battery
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_rssi
+      name: RSSI
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_snr
+      name: SNR

@@ -61,6 +61,7 @@ void setup() {
   client.setHAPassword(ha_pwd);
   //client.setFingerPrint(fingerprint);
   client.setTimeOut(5000); // 5 seconds
+  client.setDebugMode(true);
 
   display.init();
 
@@ -110,6 +111,10 @@ void loop() {
 
     if (recv == NewMailCode) {
       client.sendHAComponent("/api/services/input_boolean/turn_on", "input_boolean.mailbox_guard_motion");
+      String rssi_message = "{\"entity_id\":\"input_number.mailbox_guard_rssi\", \"value\":\"" + rssi + "\"}";
+      client.sendCustomHAData("/api/services/input_number/set_value", rssi_message);
+      String snr_message = "{\"entity_id\":\"input_number.mailbox_guard_snr\", \"value\":\"" + snr + "\"}";
+      client.sendCustomHAData("/api/services/input_number/set_value", snr_message);
     }
     else if (recv == LowBatteryCode) {
       client.sendHAComponent("/api/services/input_boolean/turn_on", "input_boolean.mailbox_guard_low_battery");
