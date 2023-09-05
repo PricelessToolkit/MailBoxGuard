@@ -191,7 +191,7 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 
 ### WiFi Configuration
 
-- In `LoRa_Gateway_MQTT.ino`, `LoRa_Gateway_HAResetAPI.ino` and `LoRa_Gateway_WhatsApp.ino`
+- In `LoRa_Gateway_MQTT.ino`, `LoRa_Gateway_HARestAPI.ino` and `LoRa_Gateway_WhatsApp.ino`
 
 ```c
 const char* ssid = "Your_WIFI_SSID";
@@ -211,7 +211,7 @@ const int mqtt_port = 1883;
 
 ## HARestAPI Configuration
 
-- Open `LoRa_Gateway_HAResetAPI.ino`
+- Open `LoRa_Gateway_HARestAPI.ino`
 - For the `ha_pwd` go to your User Profile > Long-Lived Access Tokens > Create Token
 
 ```c
