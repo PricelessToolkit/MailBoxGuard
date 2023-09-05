@@ -60,7 +60,7 @@ void loop() {
     delay(50);
     LoRa.beginPacket();
     if(TransmitBattPercent){
-      float perc = map(volts, 3.6, 4.2, 0, 100);
+      float perc = map(volts * 1000, 3600, 4200, 0, 100);
       LoRa.print(NewMailCode + "," + perc);
     } else{
       LoRa.print(NewMailCode);

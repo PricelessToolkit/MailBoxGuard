@@ -168,10 +168,15 @@ void parsePacket(String rawpkg){
 
   received_code=rawpkg.substring(0,i);
 
-  // "Converts" float to int - For cosmetic reasons. Modify, if desired
-  bat_val=rawpkg.substring(i+1);
-  intconv = bat_val.toFloat() + 0;
-  bat_val = String(intconv) + " %";
+  //Catch if Battery Percentage is not sent
+  if(rawpkg.length() <= i+1){
+    bat_val = "UNDEFINED";
+   } else {
+    // "Converts" float to int - For cosmetic reasons. Modify, if desired
+    bat_val=rawpkg.substring(i+1);
+    intconv = bat_val.toFloat() + 0;
+    bat_val = String(intconv);
+   }
   
   }
 
