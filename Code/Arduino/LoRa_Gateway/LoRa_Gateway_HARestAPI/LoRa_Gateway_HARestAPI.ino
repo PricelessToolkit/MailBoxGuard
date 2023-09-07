@@ -109,8 +109,14 @@ void loop() {
     Serial.println(rssi);
     Serial.println(snr);
 
-    if (recv == NewMailCode) {
+    if (recv.startsWith(NewMailCode)) {
       client.sendHAComponent("/api/services/input_boolean/turn_on", "input_boolean.mailbox_guard_motion");
+      int battery_index = recv.indexOf(',');
+      if (battery_index != -1) {
+        String battery_percent = String(int(round(recv.substring(battery_index + 1).toFloat())));
+        String battery_percent_message = "{\"entity_id\":\"input_number.mailbox_guard_battery\", \"value\":\"" + battery_percent + "\"}";
+        client.sendCustomHAData("/api/services/input_number/set_value", battery_percent_message);
+      }
       String rssi_message = "{\"entity_id\":\"input_number.mailbox_guard_rssi\", \"value\":\"" + rssi + "\"}";
       client.sendCustomHAData("/api/services/input_number/set_value", rssi_message);
       String snr_message = "{\"entity_id\":\"input_number.mailbox_guard_snr\", \"value\":\"" + snr + "\"}";

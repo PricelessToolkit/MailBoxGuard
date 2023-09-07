@@ -257,6 +257,11 @@ input_number:
     min: 0
     max: 255
     icon: mdi:mail
+  mailbox_guard_battery:
+    name: Mailbox Guard Battery
+    min: 0
+    max: 100
+    icon: mdi:battery
   mailbox_guard_rssi:
     name: Mailbox Guard RSSI
     min: -196
@@ -304,6 +309,9 @@ input_number:
     - service: notify.notify
       data:
         message: Mailbox Guard Low Battery!
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.mailbox_guard_low_battery
   mode: single
 ```
 
@@ -330,8 +338,12 @@ entities:
       data:
         entity_id: input_number.mailbox_guard_count
         value: 0
-  - entity: input_boolean.mailbox_guard_low_battery
-    name: Low Battery
+  - type: conditional
+    conditions: []
+    row:
+      type: sensor-entity
+      entity: input_number.mailbox_guard_battery
+      name: Battery
   - type: conditional
     conditions: []
     row:
