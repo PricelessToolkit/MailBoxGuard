@@ -7,7 +7,7 @@ Id;Designator;Footprint;Quantity;Designation;Mfr. Part;Supplier: LCSC;Supplier: 
 6;U6;ESOP-8-EP;1;TP4056;TP4056;C5311018;
 7;Q1;SOT-23;1;MMBT3904;;C20526;
 8;R2,R1;R_0603_1608Metric;2;100K;;;
-9;C5;C_1206_3216Metric;1;22uF;;;
+9;C5;C_1206_3216Metric;1;22uF;;C12891;
 10;R7;R_0603_1608Metric;1;20K;;;
 12;C6,C7,C8;C_0603_1608Metric;3;0.1uF;;;
 13;R12,R11;R_0603_1608Metric;2;5.1K;;;
