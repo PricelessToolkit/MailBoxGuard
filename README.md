@@ -27,7 +27,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - Gateway on Aliexpress [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DdCLj19)
 - Gateway on official lilygo Shop [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://www.lilygo.cc/qcxgpu)
 - Reed Switch "Normally open When the magnet is far away" "For soldering on PCB" https://s.click.aliexpress.com/e/_DkA1Sjp
-- Reed Switch with cable "Normally open When the magnet is far away" https://s.click.aliexpress.com/e/_DmLqUN5
+- Reed Switch with cable "Normally open When the magnet is far away" https://s.click.aliexpress.com/e/_DFNJv1h https://s.click.aliexpress.com/e/_DmLqUN5
 - Battery [Li-Ion 14500 800mA](https://s.click.aliexpress.com/e/_DDtU0iT)
 - Battery Li-Ion 14500 1200mA - ?
 
