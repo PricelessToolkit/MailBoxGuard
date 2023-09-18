@@ -30,6 +30,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - Reed Switch with cable "Normally open When the magnet is far away" https://s.click.aliexpress.com/e/_DFNJv1h
 - Battery [Li-Ion 14500 800mA](https://s.click.aliexpress.com/e/_DDtU0iT)
 - Battery Li-Ion 14500 1200mA - ?
+- USB Battery charger "just in case" https://s.click.aliexpress.com/e/_DkDAztD
 
 ### Sensor Specifications
 
