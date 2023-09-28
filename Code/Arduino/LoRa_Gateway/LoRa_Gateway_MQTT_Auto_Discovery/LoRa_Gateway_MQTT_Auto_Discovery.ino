@@ -90,15 +90,15 @@ void reconnect() {
       // Send auto-discovery message for signal
       client.publish(
         "homeassistant/sensor/mailbox/rssi/config",
-        "{\"name\":\"RSSI\",\"device_class\":\"signal_strength\",\"icon\":\"mdi:signal\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/sensor/mailbox/rssi\",\"unique_id\":\"mailbox_signal\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
+        "{\"name\":\"RSSI\",\"unit_of_measurement\":\"dBm\",\"device_class\":\"signal_strength\",\"icon\":\"mdi:signal\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/sensor/mailbox/rssi\",\"unique_id\":\"mailbox_signal\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
         retain
       );
-       client.publish(
+      client.publish(
         "homeassistant/sensor/mailbox/batt/config",
-        "{\"name\":\"Battery\",\"device_class\":\"battery\",\"icon\":\"mdi:battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/sensor/mailbox/batt\",\"unique_id\":\"mailbox_batt\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
+        "{\"name\":\"Battery\",\"unit_of_measurement\":\"%\",\"device_class\":\"battery\",\"icon\":\"mdi:battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/sensor/mailbox/batt\",\"unique_id\":\"mailbox_batt\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
         retain
       );
-       client.publish(
+      client.publish(
         "homeassistant/binary_sensor/mailbox/battlow/config",
         "{\"name\":\"Battery State\",\"device_class\":\"battery\",\"icon\":\"mdi:battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/binary_sensor/mailbox/battlow\",\"unique_id\":\"mailbox_battlow\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
         retain
