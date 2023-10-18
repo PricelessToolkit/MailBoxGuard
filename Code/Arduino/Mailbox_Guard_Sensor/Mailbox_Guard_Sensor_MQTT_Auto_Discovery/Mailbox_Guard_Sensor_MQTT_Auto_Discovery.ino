@@ -61,6 +61,7 @@ void loop() {
     LoRa.beginPacket();
     if(TransmitBattPercent){
       float perc = map(volts * 1000, 3600, 4200, 0, 100);
+      perc = constrain(perc, 0, 100); // Constrain the value between 0 and 100
       LoRa.print(NewMailCode + "," + perc);
     } else{
       LoRa.print(NewMailCode);
