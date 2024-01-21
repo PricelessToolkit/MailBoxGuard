@@ -8,12 +8,12 @@
 ///////////////////////////////// CHANGE THIS /////////////////////////////////
 
 #define SIGNAL_BANDWITH 125E3
-#define SPREADING_FACTOR 7
+#define SPREADING_FACTOR 12
 #define TRANSMIT_BATTERY_VOLTAGE 1
 #define CODING_RATE 5
 #define SYNC_WORD 0xF3
 #define PREAMBLE_LENGTH 8
-#define TX_POWER 5
+#define TX_POWER 20
 #define BAND 433E6  // 433E6 / 868E6 / 915E6
 #define NEW_MAIL_CODE "NEWMAIL"
 

@@ -11,11 +11,11 @@ SSD1306Wire display(OLED_ADDRESS, OLED_SDA, OLED_SCL);
 /////////////////////////////////// CONFIG ////////////////////////////////////
 
 #define SIGNAL_BANDWITH 125E3
-#define SPREADING_FACTOR 7
+#define SPREADING_FACTOR 12
 #define CODING_RATE 5
 #define SYNC_WORK 0xF3
 #define PREAMBLE_LENGTH 8
-#define TX_POWER 1
+#define TX_POWER 20
 #define BAND 433E6  // 433E6 / 868E6 / 915E6
 
 #define MQTT_RETAIN true
