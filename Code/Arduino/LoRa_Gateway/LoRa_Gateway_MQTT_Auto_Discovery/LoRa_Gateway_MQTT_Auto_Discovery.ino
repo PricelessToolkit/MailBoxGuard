@@ -1,41 +1,40 @@
+#include "secrets.h"
 #include "board.h"
 #include <SPI.h>
 #include <LoRa.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include "SSD1306Wire.h"
+#include <ArduinoJson.h>
 SSD1306Wire display(OLED_ADDRESS, OLED_SDA, OLED_SCL);
 
-///////////////////////////////////////////////////// CHANGE THIS /////////////////////////////////////////////////////////////
+/////////////////////////////////// CONFIG ////////////////////////////////////
 
-#define SignalBandwidth 125E3
-#define SpreadingFactor 12
-#define CodingRate 8
-#define SyncWord 0xF3
-#define PreambleLength 8
-#define TxPower 20
-float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
+#define SIGNAL_BANDWITH 125E3
+#define SPREADING_FACTOR 7
+#define CODING_RATE 5
+#define SYNC_WORK 0xF3
+#define PREAMBLE_LENGTH 8
+#define TX_POWER 1
+#define BAND 433E6  // 433E6 / 868E6 / 915E6
 
-const char *ssid = "Your_WIFI_SSID";
-const char *password = "Your_WIFI_password";
-const char *mqtt_username = "Your_mqtt_username";
-const char *mqtt_password = "Your_mqtt_password";
-const char *mqtt_server = "Your_mqtt/homeassistant server IP";
-const int mqtt_port = 1883;
-bool retain = true;
+#define MQTT_RETAIN true
 
-String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
-String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
+#define MQTT_MAILBOX_TOPIC "homeassistant/binary_sensor/mailbox/state"
+#define MQTT_BAT_TOPIC "homeassistant/sensor/mailbox/battery"
+#define MQTT_RSSI_TOPIC "homeassistant/sensor/mailbox/rssi"
 
-// IMPORTANT: Set TransmitBattPercent to 1 in the Sensor Config!
+#define NEW_MAIL_CODE "NEWMAIL"
 
-String bat_val = "";
-String received_code = "";
+///////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+struct lora_msg {
+  String message;
+  float bat_voltage;
+  int16_t packet_rssi;
+};
 
-String recv;
-int count = 0;
+lora_msg lora_message;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -44,9 +43,9 @@ void setup_wifi() {
   delay(10);
   Serial.println();
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+  Serial.println(WIFI_SSID);
 
-  WiFi.begin(ssid, password);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -63,46 +62,35 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Buffer needs to be increased to accomodate the config payloads
-    if(client.setBufferSize(380)){
-    Serial.println("Buffer Size increased to 380 byte"); 
-    }else{
-     Serial.println("Failed to allocate larger buffer");   
-     }
+    if (client.setBufferSize(380)) {
+      Serial.println("Buffer Size increased to 380 byte");
+    } else {
+      Serial.println("Failed to allocate larger buffer");
+    }
 
-    // Create a random client ID
-    String clientId = "LoRaGateway-";
-    clientId += String(random(0xffff), HEX);
+    String client_id = "LoRaGateway-";
+    client_id += String(random(0xffff), HEX);
 
-    // Attempt to connect
-    if (client.connect(clientId.c_str(), mqtt_username, mqtt_password)) {
+    if (client.connect(client_id.c_str(), MQTT_USERNAME, MQTT_PASSWORD)) {
       Serial.println("MQTT connected");
 
-     Serial.println("Buffersize: " + client.getBufferSize());   
+      Serial.println("Buffersize: " + client.getBufferSize());
 
-      
-      // Send auto-discovery message for sensor
+      // send auto-discovery message for mail status sensor
       client.publish(
-        "homeassistant/binary_sensor/mailbox/config",
-        "{\"name\":null,\"device_class\":\"door\",\"icon\":\"mdi:mailbox\",\"state_topic\":\"homeassistant/binary_sensor/mailbox/state\",\"unique_id\":\"mailbox_sensor\",\"payload_on\":\"mail\",\"payload_off\":\"empty\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\",\"mdl\":\"MAILBOXguard+\",\"mf\":\"PricelessToolkit\"}}",
-        retain
-      );
-      
-      // Send auto-discovery message for signal
+        (String(MQTT_MAILBOX_TOPIC) + String("/config")).c_str(),
+        (String("{\"name\":null,\"device_class\":\"door\",\"icon\":\"mdi:mailbox\",\"state_topic\":\"") + String(MQTT_MAILBOX_TOPIC) + String("\",\"unique_id\":\"mailbox_sensor\",\"payload_on\":\"mail\",\"payload_off\":\"empty\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\",\"mdl\":\"MAILBOXguard+\",\"mf\":\"PricelessToolkit\"}}")).c_str(),
+        MQTT_RETAIN);
+      // send auto-discovery message for rssi
       client.publish(
-        "homeassistant/sensor/mailbox/rssi/config",
-        "{\"name\":\"RSSI\",\"unit_of_measurement\":\"dBm\",\"device_class\":\"signal_strength\",\"icon\":\"mdi:signal\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/sensor/mailbox/rssi\",\"unique_id\":\"mailbox_signal\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
-        retain
-      );
+        (String(MQTT_RSSI_TOPIC) + String("/config")).c_str(),
+        (String("{\"name\":\"RSSI\",\"unit_of_measurement\":\"dBm\",\"device_class\":\"signal_strength\",\"icon\":\"mdi:signal\",\"entity_category\":\"diagnostic\",\"state_topic\":\"") + String(MQTT_RSSI_TOPIC) + String("\",\"unique_id\":\"mailbox_signal\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}")).c_str(),
+        MQTT_RETAIN);
+      // send auto-discovery message for battery voltage
       client.publish(
-        "homeassistant/sensor/mailbox/batt/config",
-        "{\"name\":\"Battery\",\"unit_of_measurement\":\"%\",\"device_class\":\"battery\",\"icon\":\"mdi:battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/sensor/mailbox/batt\",\"unique_id\":\"mailbox_batt\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
-        retain
-      );
-      client.publish(
-        "homeassistant/binary_sensor/mailbox/battlow/config",
-        "{\"name\":\"Battery State\",\"device_class\":\"battery\",\"icon\":\"mdi:battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/binary_sensor/mailbox/battlow\",\"unique_id\":\"mailbox_battlow\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
-        retain
-      );
+        (String(MQTT_BAT_TOPIC) + String("/config")).c_str(),
+        (String("{\"name\":\"Battery\",\"unit_of_measurement\":\"V\",\"device_class\":\"battery\",\"icon\":\"mdi:battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"") + String(MQTT_BAT_TOPIC) + String("\",\"unique_id\":\"mailbox_battery_voltage\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}")).c_str(),
+        MQTT_RETAIN);
     } else {
       Serial.print("MQTT failed, rc=");
       Serial.print(client.state());
@@ -114,12 +102,11 @@ void reconnect() {
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial) {}
 
   setup_wifi();
-  client.setServer(mqtt_server, mqtt_port);
+  client.setServer(MQTT_SERVER, MQTT_PORT);
   reconnect();
-  // client.setCallback(MQTTCallback);
 
   display.init();
 
@@ -141,73 +128,73 @@ void setup() {
   Serial.println("Starting LoRa on " + String(BAND) + " MHz");
   if (!LoRa.begin(BAND)) {
     Serial.println("Starting LoRa failed!");
-    while (1);
+    while (1) {}
   }
 
-  LoRa.setSignalBandwidth(SignalBandwidth); // signal bandwidth in Hz, defaults to 125E3
-  LoRa.setSpreadingFactor(SpreadingFactor); // ranges from 6-12,default 7 see API docs
-  LoRa.setCodingRate4(CodingRate);          // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
-  LoRa.setSyncWord(SyncWord);               // byte value to use as the sync word, defaults to 0x12
-  LoRa.setPreambleLength(PreambleLength);   // Supported values are between 6 and 65535.
-  LoRa.disableCrc();                        // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc();
-  LoRa.setTxPower(TxPower);                 // TX power in dB, defaults to 17, Supported values are 2 to 20
- 
+  LoRa.setSignalBandwidth(SIGNAL_BANDWITH);  // signal bandwidth in Hz, defaults to 125E3
+  LoRa.setSpreadingFactor(SPREADING_FACTOR);  // ranges from 6-12,default 7 see API docs
+  LoRa.setCodingRate4(CODING_RATE);  // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
+  LoRa.setSyncWord(SYNC_WORK);  // byte value to use as the sync word, defaults to 0x12
+  LoRa.setPreambleLength(PREAMBLE_LENGTH);  // Supported values are between 6 and 65535.
+  LoRa.disableCrc();  // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc();
+  LoRa.setTxPower(TX_POWER);  // TX power in dB, defaults to 17, Supported values are 2 to 20
 }
 
-void parsePacket(String rawpkg){
-  int i = 0;
-  int intconv;
+void parsePacket(String rawpkg) {
+  JsonDocument doc;
 
-  // Empty vals to be sure we have new data
-  bat_val = "";
-  received_code = "";
-  
-  while(rawpkg[i] != ',' && rawpkg[i] != '\0' ){
-    i++;
+  DeserializationError error = deserializeJson(doc, rawpkg);
+
+  if (error) {
+    Serial.print("deserializeJson() returned ");
+    Serial.println(error.f_str());
+    return;
   }
 
-  received_code=rawpkg.substring(0,i);
-
-  //Catch if Battery Percentage is not sent
-  if(rawpkg.length() <= i+1){
-    bat_val = "UNDEFINED";
-   } else {
-    // "Converts" float to int - For cosmetic reasons. Modify, if desired
-    bat_val=rawpkg.substring(i+1);
-    intconv = bat_val.toFloat() + 0;
-    bat_val = String(intconv);
-   }
-  
+  if (doc.containsKey("message")) {
+    lora_message.message = doc["message"].as<String>();
+    Serial.print("message: ");
+    Serial.println(lora_message.message);
+  } else {
+    lora_message.message = "";
+    Serial.println("no message in json");
   }
+
+  if (doc.containsKey("bat_voltage")) {
+    lora_message.bat_voltage = doc["bat_voltage"].as<float>();
+    Serial.print("bat_voltage: ");
+    Serial.println(lora_message.bat_voltage);
+  } else {
+    lora_message.bat_voltage = -1.0;
+    Serial.println("no battery voltage (bat_voltage) in json");
+  }
+
+  lora_message.packet_rssi = LoRa.packetRssi();
+}
 
 void loop() {
   if (LoRa.parsePacket()) {
     String recv = "";
     while (LoRa.available()) {
-      recv += (char)LoRa.read();
+      recv += static_cast<char>(LoRa.read());
     }
-
     Serial.println(recv);
+
     if (client.connected()) {
       parsePacket(recv);
-      
-      if(received_code == NewMailCode){
-        client.publish("homeassistant/binary_sensor/mailbox/state", "mail", retain);
-       };
-       
-      if(received_code == LowBatteryCode){
-        client.publish("homeassistant/binary_sensor/mailbox/battlow", "ON", retain);
-       } else {
-        client.publish("homeassistant/binary_sensor/mailbox/battlow", "OFF", retain);
-       };
 
-       
-        
-      String rs = String(LoRa.packetRssi());
-      client.publish("homeassistant/sensor/mailbox/rssi", rs.c_str(), retain);
-      client.publish("homeassistant/sensor/mailbox/batt", bat_val.c_str(), retain);
+      if (lora_message.message == NEW_MAIL_CODE) {
+        client.publish(MQTT_MAILBOX_TOPIC, "mail", MQTT_RETAIN);
+      }
+
+      client.publish(MQTT_RSSI_TOPIC, String(lora_message.packet_rssi).c_str(), MQTT_RETAIN);
+      client.publish(MQTT_BAT_TOPIC, String(lora_message.bat_voltage).c_str(), MQTT_RETAIN);
 
       client.endPublish();
+
+      lora_message.message = "";
+      lora_message.bat_voltage = -1.0;
+      lora_message.packet_rssi = -1;
     }
   }
 
