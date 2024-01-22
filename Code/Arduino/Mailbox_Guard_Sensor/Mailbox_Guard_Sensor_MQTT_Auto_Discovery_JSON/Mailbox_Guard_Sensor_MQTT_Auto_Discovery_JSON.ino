@@ -33,13 +33,13 @@ void setup() {
     while (1) {}
   }
 
-  // LoRa.setSignalBandwidth(SIGNAL_BANDWITH);  // signal bandwidth in Hz, defaults to 125E3
-  // LoRa.setSpreadingFactor(SPREADING_FACTOR);  // supports values 6 - 12, defaults to 7
-  // LoRa.setCodingRate4(CODING_RATE);  // supported values 5 - 8, defaults to 5
+  LoRa.setSignalBandwidth(SIGNAL_BANDWITH);  // signal bandwidth in Hz, defaults to 125E3
+  LoRa.setSpreadingFactor(SPREADING_FACTOR);  // supports values 6 - 12, defaults to 7
+  LoRa.setCodingRate4(CODING_RATE);  // supported values 5 - 8, defaults to 5
   LoRa.setSyncWord(SYNC_WORD);  // byte value to use as the sync word, defaults to 0x12
-  // LoRa.setPreambleLength(PREAMBLE_LENGTH);  // supports values 6 - 65535, defaults to 8
-  // LoRa.disableCrc();   // enable or disable CRC usage, defaults to disabled
-  // LoRa.setTxPower(TX_POWER);  // TX power in dB, supports values 2 - 20, defaults to 17
+  LoRa.setPreambleLength(PREAMBLE_LENGTH);  // supports values 6 - 65535, defaults to 8
+  LoRa.disableCrc();   // enable or disable CRC usage, defaults to disabled
+  LoRa.setTxPower(TX_POWER);  // TX power in dB, supports values 2 - 20, defaults to 17
 }
 
 
