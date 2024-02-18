@@ -81,6 +81,9 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 
 # Arduino Setup "IDE 2.0.x unsupported"
 
+> [!NOTE]
+>  For the Library "megaTinyCore" the official recommendation is. Only versions of the Arduino IDE downloaded from https://arduino.cc should be used, NEVER from a Linux package manager. The golden standard is "V1.8.13".
+
 - Additional Boards Manager URLs
 
   - ESP32 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
