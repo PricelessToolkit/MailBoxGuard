@@ -95,12 +95,12 @@ void reconnect() {
       );
       client.publish(
         "homeassistant/sensor/mailbox/batt/config",
-        "{\"name\":\"Battery\",\"unit_of_measurement\":\"%\",\"device_class\":\"battery\",\"icon\":\"mdi:battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/sensor/mailbox/batt\",\"unique_id\":\"mailbox_batt\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
+        "{\"name\":\"Battery\",\"unit_of_measurement\":\"%\",\"device_class\":\"battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/sensor/mailbox/batt\",\"unique_id\":\"mailbox_batt\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
         retain
       );
       client.publish(
         "homeassistant/binary_sensor/mailbox/battlow/config",
-        "{\"name\":\"Battery State\",\"device_class\":\"battery\",\"icon\":\"mdi:battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/binary_sensor/mailbox/battlow\",\"unique_id\":\"mailbox_battlow\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
+        "{\"name\":\"Battery State\",\"device_class\":\"battery\",\"entity_category\":\"diagnostic\",\"state_topic\":\"homeassistant/binary_sensor/mailbox/battlow\",\"unique_id\":\"mailbox_battlow\",\"device\":{\"identifiers\":[\"mailbox\"],\"name\":\"Mailbox\"}}",
         retain
       );
     } else {

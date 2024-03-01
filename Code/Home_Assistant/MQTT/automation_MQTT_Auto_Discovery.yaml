@@ -13,3 +13,4 @@ action:
     data:
       topic: homeassistant/binary_sensor/mailbox/state
       payload: empty
+      retain: true
