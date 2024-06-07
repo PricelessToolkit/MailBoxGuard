@@ -28,6 +28,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
   - Mailbox Sensor [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/34-41-mailbox-guard-wireless-ir-sensor.html)
   - UNIProg Programmer [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/33-uniprog-uartupdi-programmer-33v.html)
 
+- My Own Gateway Design [CapiBridge](https://github.com/PricelessToolkit/CapiBridge)
 - Gateway on Aliexpress [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DdCLj19)
 - Gateway on official lilygo Shop [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://www.lilygo.cc/qcxgpu)
 - Pogo Pin Clamp [6 Pin Minimum 2.54mm pitch ](https://s.click.aliexpress.com/e/_Dm94yBf)
