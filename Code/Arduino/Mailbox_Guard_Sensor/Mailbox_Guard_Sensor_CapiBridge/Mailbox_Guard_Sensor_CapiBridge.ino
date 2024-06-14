@@ -16,6 +16,7 @@
 #define TX_POWER 20
 #define BAND 868E6  // 433E6 / 868E6 / 915E6
 #define NODE_NAME "mbox"
+#define GATEWAY_KEY "xy" // must match CapiBridge's key
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -49,10 +50,9 @@ void loop() {
     LoRa.beginPacket();
 #if TRANSMIT_BATTERY_VOLTAGE
     float volts = analogReadEnh(PIN_PB4, 12) * (1.1 / 4096) * (30 + 10) / 10;
-    //Serial.println(volts);
-    LoRa.print("{\"k\":\"xy\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + volts + "}");   
+    LoRa.print("{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + volts + "}");
 #else
-    LoRa.print("{\"k\":\"xy\",\"id\":\"" + String(NODE_NAME) + "\"}");
+    LoRa.print("{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\"}");
 #endif
     LoRa.endPacket();
     delay(10);
