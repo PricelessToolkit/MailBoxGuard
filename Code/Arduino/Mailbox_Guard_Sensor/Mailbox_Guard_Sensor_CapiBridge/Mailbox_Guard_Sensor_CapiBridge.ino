@@ -53,7 +53,7 @@ void loop() {
     // Calculate percentage
     float percentage = ((volts - 3.2) / (4.2 - 3.2)) * 100;
     percentage = constrain(percentage, 0, 100);
-	int intPercentage = (int)percentage;
+	  int intPercentage = (int)percentage;
 	
     LoRa.print("{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + String(intPercentage) + "}");
 #else
