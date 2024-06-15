@@ -50,7 +50,12 @@ void loop() {
     LoRa.beginPacket();
 #if TRANSMIT_BATTERY_VOLTAGE
     float volts = analogReadEnh(PIN_PB4, 12) * (1.1 / 4096) * (30 + 10) / 10;
-    LoRa.print("{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + volts + "}");
+    // Calculate percentage
+    float percentage = ((volts - 3.2) / (4.2 - 3.2)) * 100;
+    percentage = constrain(percentage, 0, 100);
+	int intPercentage = (int)percentage;
+	
+    LoRa.print("{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + intPercentage + "}");
 #else
     LoRa.print("{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\"}");
 #endif
