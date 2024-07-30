@@ -344,7 +344,7 @@ mode: single
 
 ```
 
-This automation is designed to handle the dismissal of a notification when a specific action is triggered on a mobile device. The details of the automation are as follows:
+This automation is designed to handle the dismissal of a notification when a specific action is triggered on a mobile device. Works by sending an MQTT message to update the state of the mailbox sensor and then clearing the corresponding notifications on specified mobile devices. The details of the automation are as follows:
 
 #### Trigger
 - **Platform:** Event
@@ -380,7 +380,6 @@ There are no conditions specified, so this automation will run whenever the trig
 #### Mode
 - **Mode:** `single` - Ensures that only one instance of this automation can run at a time.
 
-This automation works by sending an MQTT message to update the state of the mailbox sensor and then clearing the corresponding notifications on specified mobile devices.
 
 
 
