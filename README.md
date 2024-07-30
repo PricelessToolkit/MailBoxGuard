@@ -34,7 +34,6 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - Reed Switch "Normally open When the magnet is far away" "For soldering on PCB" https://s.click.aliexpress.com/e/_DkA1Sjp
 - Reed Switch with cable "Normally open When the magnet is far away" https://s.click.aliexpress.com/e/_DFNJv1h
 - Battery [Li-Ion 14500 800mA](https://s.click.aliexpress.com/e/_DDtU0iT)
-- Battery Li-Ion 14500 1200mA - ?
 - USB Battery charger "just in case" https://s.click.aliexpress.com/e/_DkDAztD
 
 ### Sensor Specifications
@@ -88,19 +87,22 @@ The Mailbox Guard is a device that detects when a new letter or package has been
     - https://github.com/debsahu/HARestAPI
 
 
-# Gateway Configuration
-
-### Choosing Firmware for LoRa Gateway
+## Choosing Firmware for LoRa Gateway
 1. `LoRa_Gateway_MQTT_JSON.ino` - 🆕 " Home Assistant MQTT-Autodiscovery"
 2. `LoRa_Gateway_OLED.ino` - "For offline use" Display turns on and shows that there is a new letter in the mailbox "the number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
 3. `LoRa_Gateway_WhatsApp.ino` - Sends a message to WhatsApp "You Have New Mail".
 4. `LoRa_Gateway_MQTT.ino` - Sends a row message and RSSI to MQTT Server.
 5. `LoRa_Gateway_HARestAPI.ino` - Sends a message to HA via the API interface.
 
+## Gateway Configuration
+
+> [!NOTE]
+>  If you are using CapiBridge Gateway, configure it using the Capibridge page.
+
 ### Select TTGO_LoRa Board Version
 
 - In Arduino IDE select Tools > Board > ESP32 Arduino > `ESP32 Dev Module`
-- Change the BOARD definition in `board.h` according to your gateway Version " 1 = ENABLE / 0 = DISABLE ".
+- Change the BOARD definition in `board.h` according to your Lilygo gateway HW Version " 1 = ENABLE / 0 = DISABLE ".
 
 ```c
 #define LORA_V1_0_OLED  0
@@ -130,7 +132,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 | LORA RST    | 14   | 23          | 23   | 23   | 23   |
 | LORA DIO0   | 26   | 26          | 26   | 26   | 26   |
 
-### Gateway LoRa Radio and WiFi Configuration "LoRa_Gateway_MQTT_JSON.ino"
+### Gateway LoRa and WiFi Configuration "LoRa_Gateway_MQTT_JSON.ino"
 - Configuration File `config.h`
 - The LoRa settings in the gateway and in the sensor must match.
 
@@ -161,6 +163,26 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 #define BAND 868E6             // 433E6 / 868E6 / 915E6
 
 ///////////////////////////////////////////////////////////////////////////////
+```
+# Mailbox Sensor configuration
+- The LoRa settings must match the gateway ones.
+
+```c
+
+///////////////////////////////// CHANGE THIS /////////////////////////////////
+
+#define SIGNAL_BANDWITH 125E3
+#define SPREADING_FACTOR 8
+#define CODING_RATE 5
+#define SYNC_WORD 0xF3
+#define PREAMBLE_LENGTH 6
+#define TX_POWER 20
+#define BAND 868E6  // 433E6 / 868E6 / 915E6
+#define NODE_NAME "mbox" // The name of your sensor must be unique.
+#define GATEWAY_KEY "xy" // must match the Gateway key.
+
+///////////////////////////////////////////////////////////////////////////////
+
 ```
 
 # Mailbox Sensor Programming
