@@ -188,7 +188,7 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 | UPD     | UPD           |
 
 1. In Arduino IDE select the programmer "SerialUPDI-230400 baud"
-2. Select board configuration is shown below "See screenshot"
+2. Select board configuration as shown below "screenshot"
 
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"  width="600" height="398" />
 
