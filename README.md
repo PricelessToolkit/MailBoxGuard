@@ -90,7 +90,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 -------------
 
 # Choosing a Gateway Hardware
-1. [CapiBridge LoRa/ESP-NOW Gateway](https://github.com/PricelessToolkit/CapiBridge): This is my development project, featuring multi-protocol support, including LoRa and ESP-NOW. It will be compatible with my future LoRa And ESP-NOW sensor projects. Purchasing this gateway will support my ongoing open-source developments.
+1. CapiBridge LoRa/ESP-NOW Gateway: I developed this project, featuring multi-protocol support, including LoRa and ESP-NOW. It will be compatible with my future LoRa and ESP-NOW sensor projects. Purchasing this gateway will support my ongoing open-source developments.
 2. LilyGo LoRa Board: This option is more affordable but only supports LoRa. It may not be compatible with all future projects.
 
 # Choosing Firmware for LoRa Gateway
