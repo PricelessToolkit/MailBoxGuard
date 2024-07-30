@@ -151,11 +151,11 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 ///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////// WIFI / MQTT ////////////////////////////////////
-#define WIFI_SSID "xxxx"
-#define WIFI_PASSWORD "xxxx"
-#define MQTT_USERNAME "xxxx"
-#define MQTT_PASSWORD "xxxx"
-#define MQTT_SERVER "xxxx"
+#define WIFI_SSID "wifi-name"
+#define WIFI_PASSWORD "wifi-password"
+#define MQTT_USERNAME "mqtt-username"
+#define MQTT_PASSWORD "mqtt-password"
+#define MQTT_SERVER "IP-Address"
 #define MQTT_PORT 1883
 
 
