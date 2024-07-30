@@ -15,8 +15,7 @@ Your subscription goes a long way in backing my work.
 ### Use Cases
 
 - Mailbox Sensor - "Code examples are provided"
-- Motion Sensor
-- Door Window Sensor
+- Alarm / Motion Sensor
 
 ### How it works - Mailbox Use Case
 
