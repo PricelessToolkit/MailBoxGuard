@@ -172,6 +172,8 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 ///////////////////////////////////////////////////////////////////////////////
 ```
 
+The remaining is to upload the code into the LilyGo board after that the "LoRaGateway" RSSI entity will appear in the MQTT devices list.
+
 
 # Mailbox Sensor configuration and Programming
 
