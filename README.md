@@ -237,39 +237,8 @@ Done! Once the sensor is triggered for the first time, it will appear in the MQT
 
 ### "Automation" Sensor Notification
 
-```yaml
-
-alias: 📬 LoRa MailBox Sensor Notification
-description: ""
-trigger:
-  - platform: state
-    entity_id:
-      - sensor.mbox_state
-    to: mail
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 1
-    from: null
-condition: []
-action:
-  - service: notify.mobile_app_doogee_v20pro
-    data:
-      message: Mailbox is Full !
-      title: New Mail!
-      data:
-        url: /lovelace/home
-        persistent: true
-        importance: high
-        channel: MailBox
-        tag: mailbox
-        image: /media/local/notify/mailbox.jpg
-        actions:
-          - action: received
-            title: I took the parcel
-mode: single
-
-```
+<details>
+<summary>"Explanation" Sensor Notification</summary>
 
 This automation is set up to notify a mobile device when new mail is detected in the mailbox. This setup ensures that whenever new mail is detected by the mailbox sensor, a high-priority notification with relevant details and an image is sent to the specified mobile device. The details of the automation are as follows:
 
@@ -304,41 +273,44 @@ There are no conditions specified, so this automation will run whenever the trig
 #### Mode
 - **Mode:** `single` - Ensures that only one instance of this automation can run at a time.
 
-
-### "Automation"  MailBox Dismiss Notification from Notification
-
+</details>
 
 ```yaml
 
-alias: 📬 LoRa MailBox Dismiss Notification
+alias: 📬 LoRa MailBox Sensor Notification
 description: ""
 trigger:
-  - platform: event
-    event_data:
-      action: received
-    event_type: mobile_app_notification_action
+  - platform: state
+    entity_id:
+      - sensor.mbox_state
+    to: mail
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+    from: null
 condition: []
 action:
-  - service: mqtt.publish
-    data:
-      qos: 0
-      retain: true
-      topic: homeassistant/sensor/YourSensorName/state
-      payload: empty
   - service: notify.mobile_app_doogee_v20pro
     data:
-      message: clear_notification
+      message: Mailbox is Full !
+      title: New Mail!
       data:
+        url: /lovelace/home
+        persistent: true
+        importance: high
+        channel: MailBox
         tag: mailbox
-  - service: notify.mobile_app_oneplus8t
-    data:
-      message: clear_notification
-      data:
-        tag: mailbox
+        image: /media/local/notify/mailbox.jpg
+        actions:
+          - action: received
+            title: I took the parcel
 mode: single
 
-
 ```
+
+
+### "Automation"  MailBox Dismiss Notification from Notification
 
 <details>
 <summary>"Explanation" MailBox Dismiss Notification</summary>
@@ -381,6 +353,37 @@ There are no conditions specified, so this automation will run whenever the trig
 
 </details>
 
+```yaml
+
+alias: 📬 LoRa MailBox Dismiss Notification
+description: ""
+trigger:
+  - platform: event
+    event_data:
+      action: received
+    event_type: mobile_app_notification_action
+condition: []
+action:
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: true
+      topic: homeassistant/sensor/YourSensorName/state
+      payload: empty
+  - service: notify.mobile_app_doogee_v20pro
+    data:
+      message: clear_notification
+      data:
+        tag: mailbox
+  - service: notify.mobile_app_oneplus8t
+    data:
+      message: clear_notification
+      data:
+        tag: mailbox
+mode: single
+
+
+```
 
 
 
