@@ -1,7 +1,0 @@
-mqtt:
-    sensor:
-     - name: "LoRa_Code"
-       state_topic: "LoRa-Gateway/Code"
-
-     - name: "LoRa_RSSI"
-       state_topic: "LoRa-Gateway/RSSI"
