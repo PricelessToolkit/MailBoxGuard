@@ -327,7 +327,7 @@ action:
     data:
       qos: 0
       retain: true
-      topic: homeassistant/YourSensorName/mbox/state
+      topic: homeassistant/sensor/YourSensorName/state
       payload: empty
   - service: notify.mobile_app_doogee_v20pro
     data:
@@ -362,7 +362,7 @@ There are no conditions specified, so this automation will run whenever the trig
    - **Data:**
      - **QoS:** `0` - Quality of Service level.
      - **Retain:** `true` - Retains the message on the MQTT broker.
-     - **Topic:** `homeassistant/YourSensorName/mbox/state` - The MQTT topic to publish to.
+     - **Topic:** `homeassistant/sensor/YourSensorName/state` - The MQTT topic to publish to.
      - **Payload:** `empty` - The message content, indicating the mailbox state is now empty.
 
 2. **Service:** `notify.mobile_app_doogee_v20pro`
