@@ -10,6 +10,8 @@ Your subscription goes a long way in backing my work.
 
 ### Can be Integrated into Home Assistant, receive notifications via WhatsApp, or be used offline.
 
+<img src="img/mailbox_ha.jpg"/>
+
 ### Use Cases
 
 - Mailbox Sensor - "Code examples are provided"
