@@ -8,7 +8,7 @@ Your subscription goes a long way in backing my work.
 
 # Long Range "LoRa" Universal MailBox Sensor
 
-### Can be Integrated into Home Assistant, receive notifications via WhatsApp, or be used offline.
+### Can be Integrated into Home Assistant, receive notifications via WhatsApp, or offline.
 
 <img src="img/mailbox_ha.jpg"/>
 
