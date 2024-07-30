@@ -61,6 +61,18 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 ==============================
 
+## 📣 Updates, Bugfixes, and Breaking Changes
+
+> [!NOTE]
+>  If you're ready to contribute to the project, your support would be greatly appreciated.
+
+- **30.07.2024**
+  - New optimized Gateway firmware `LoRa_Gateway_MQTT_JSON.ino`
+  - Sensor firmware cleanup `Mailbox_Guard_Sensor_MQTT_JSON.ino`
+
+____________
+
+
 # ⚠️ Battery Polarity ⚠️
 
 - Before connecting the battery, make sure to check the connector polarity on your battery. This is especially important because many 1S LiPo batteries have inverted polarity.
