@@ -59,7 +59,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - Programming Protocol
   - UPDI / Serial2UPDI
 
-==============================
+____________
 
 ## 📣 Updates, Bugfixes, and Breaking Changes
 
