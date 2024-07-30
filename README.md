@@ -108,11 +108,19 @@ ____________
 2. LilyGo LoRa Board: This option is more affordable but only supports LoRa. It may not be compatible with all future projects.
 
 # Choosing Firmware for LoRa Gateway
-1. `LoRa_Gateway_MQTT_JSON.ino` - 🆕 " Home Assistant MQTT-Autodiscovery"
-2. `LoRa_Gateway_OLED.ino` - "For offline use" Display turns on and shows that there is a new letter in the mailbox "the number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
-3. `LoRa_Gateway_WhatsApp.ino` - Sends a message to WhatsApp "You Have New Mail".
-4. `LoRa_Gateway_MQTT.ino` - Sends a row message and RSSI to MQTT Server.
-5. `LoRa_Gateway_HARestAPI.ino` - Sends a message to HA via the API interface.
+
+1. **`LoRa_Gateway_MQTT_JSON.ino`** - 🆕 "Home Assistant MQTT Autodiscovery": Automatically discovers and integrates sensors with Home Assistant via MQTT.
+   
+2. **`LoRa_Gateway_OLED.ino`** - "For Offline Use": Displays new mail notifications, including letter count, signal strength, and battery status. Requires a reset after mail retrieval.
+
+3. **`LoRa_Gateway_WhatsApp.ino`** - Sends a "You have new mail" message to WhatsApp.
+
+4. **`LoRa_Gateway_MQTT.ino`** - Sends raw messages and RSSI to an MQTT server.
+
+5. **`LoRa_Gateway_HARestAPI.ino`** - Sends new mail notifications to Home Assistant via REST API.
+
+
+
 
 # Gateway Configuration
 
