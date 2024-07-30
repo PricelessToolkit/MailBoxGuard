@@ -87,19 +87,19 @@ The Mailbox Guard is a device that detects when a new letter or package has been
     - https://github.com/debsahu/HARestAPI
 
 
-## Choosing Firmware for LoRa Gateway
+# Choosing Firmware for LoRa Gateway
 1. `LoRa_Gateway_MQTT_JSON.ino` - 🆕 " Home Assistant MQTT-Autodiscovery"
 2. `LoRa_Gateway_OLED.ino` - "For offline use" Display turns on and shows that there is a new letter in the mailbox "the number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
 3. `LoRa_Gateway_WhatsApp.ino` - Sends a message to WhatsApp "You Have New Mail".
 4. `LoRa_Gateway_MQTT.ino` - Sends a row message and RSSI to MQTT Server.
 5. `LoRa_Gateway_HARestAPI.ino` - Sends a message to HA via the API interface.
 
-## Gateway Configuration
+# Gateway Configuration
 
 > [!NOTE]
->  If you are using CapiBridge Gateway, configure it using the Capibridge page.
+>  If you are using CapiBridge Gateway, configure it using the [Capibridge](https://github.com/PricelessToolkit/CapiBridge) page.
 
-### Select TTGO_LoRa Board Version
+## Select TTGO_LoRa Board Version
 
 - In Arduino IDE select Tools > Board > ESP32 Arduino > `ESP32 Dev Module`
 - Change the BOARD definition in `board.h` according to your Lilygo gateway HW Version " 1 = ENABLE / 0 = DISABLE ".
@@ -112,7 +112,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 #define LORA_V2_0_OLED  1
 ```
 
-## TTGO Boards GPIOs
+### TTGO Boards GPIOs
 
 | Name        | V1.0 | V1.2(T-Fox) | V1.3 | V1.6 | V2.1 |
 | ----------- | ---- | ----------- | ---- | ---- | ---- |
@@ -132,7 +132,8 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 | LORA RST    | 14   | 23          | 23   | 23   | 23   |
 | LORA DIO0   | 26   | 26          | 26   | 26   | 26   |
 
-### Gateway LoRa and WiFi Configuration "LoRa_Gateway_MQTT_JSON.ino"
+## Setting up WIFI and LoRa in the gateway
+- Firmware `LoRa_Gateway_MQTT_JSON.ino`
 - Configuration File `config.h`
 - The LoRa settings in the gateway and in the sensor must match.
 
@@ -164,8 +165,29 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 ///////////////////////////////////////////////////////////////////////////////
 ```
-# Mailbox Sensor configuration
-- The LoRa settings must match the gateway ones.
+
+
+# Mailbox Sensor configuration and Programming
+
+For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use my other open-source project "UNIProg Programmer" [GitHub](https://github.com/PricelessToolkit/UNIProg_Programmer)
+
+### UPDI Connection Diagram
+
+| UNIProg | MailBox Guard |
+| ------- | ------------- |
+| GND     | GND           |
+| 3v3     | 3v3           |
+| UPD     | UPD           |
+
+1. In Arduino IDE select the programmer "SerialUPDI-230400 baud"
+2. Select board configuration is shown below "See screenshot"
+
+<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"  width="600" height="398" />
+
+3. Open Sensor firmware `Mailbox_Guard_Sensor_MQTT_JSON.ino` then change  `sensor name`, `gateway key`, and `LoRa` settings according to your needs.
+
+> [!NOTE]
+> The LoRa settings must match the gateway ones.
 
 ```c
 
@@ -184,18 +206,6 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 ///////////////////////////////////////////////////////////////////////////////
 
 ```
+3. Click Upload Using Programmer or "Ctrl + Shift + U"
 
-# Mailbox Sensor Programming
-
-For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use my other open-source project "UNIProg Programmer" [GitHub](https://github.com/PricelessToolkit/UNIProg_Programmer)
-
-### Connection Diagram
-
-| UNIProg | MailBox Guard |
-| ------- | ------------- |
-| GND     | GND           |
-| 3v3     | 3v3           |
-| UPD     | UPD           |
-
-
-<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"  width="600" height="398" />
+Done! When the sensor is triggered for the first time, it will appear in the MQTT devices list on Home Assistant.
