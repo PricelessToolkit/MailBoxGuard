@@ -27,7 +27,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
   - Mailbox Sensor [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/34-41-mailbox-guard-wireless-ir-sensor.html)
   - UNIProg Programmer [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/33-uniprog-uartupdi-programmer-33v.html)
-  - Gateway CapiBridge [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/42-129-capibridge-gateway-kit.html#/41-frequency-868_915_mhz)
+  - Official Multiprotocol Gateway CapiBridge [https://www.pricelesstoolkit.com/](https://www.pricelesstoolkit.com/en/projects/42-129-capibridge-gateway-kit.html#/41-frequency-868_915_mhz)
 
 - Gateway on Aliexpress [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz](https://s.click.aliexpress.com/e/_DdCLj19)
 - Pogo Pin Clamp [6 Pin Minimum 2.54mm pitch ](https://s.click.aliexpress.com/e/_Dm94yBf)
@@ -102,47 +102,15 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"  width="600" height="398" />
 
-### Frequency Configuration
-
-- In `Mailbox_Guard_Sensor.ino`
-- The settings in the gateway and in the sensor must match.
-
-```c
-#define BAND 868E6 // frequency in Hz (ASIA 433E6, EU 868E6, US 915E6)
-```
-
-### New Mail and Low Battery Key
-
-- In `Mailbox_Guard_Sensor.ino`
-
-```c
-String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
-String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
-```
-
-### MailBox LoRa Radio Configuration
-
-- In `Mailbox_Guard_Sensor.ino`
-  - The settings in the gateway and in the sensor must match.
-
-```c
-LoRa.setSignalBandwidth(125E3);         // signal bandwidth in Hz, defaults to 125E3
-LoRa.setSpreadingFactor(12);            // ranges from 6-12, default 7 see API docs
-LoRa.setCodingRate4(8);                 // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
-LoRa.setSyncWord(0xF3);                 // byte value, any hexadecimal value from 0x00 to 0xFF, defaults is 0x12
-LoRa.setPreambleLength(8);              //Supported values are between 6 and 65535.
-LoRa.disableCrc();                      // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc();
-LoRa.setTxPower(20);                    // TX power in dB, defaults to 17, Supported values are 2 to 20
-```
 
 # Gateway Configuration
 
 ### Choosing Firmware for LoRa Gateway
-
-1. `LoRa_Gateway_OLED.ino` - "For offline use" Display turns on and shows that there is a new letter in the mailbox "the number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
-2. `LoRa_Gateway_WhatsApp.ino` - Sends a message to WhatsApp "You Have New Mail".
-3. `LoRa_Gateway_MQTT.ino` - Sends a row message and RSSI to MQTT Server.
-4. `LoRa_Gateway_HARestAPI.ino` - Sends a message to HA via the API interface.
+1. `LoRa_Gateway_MQTT_JSON.ino` - 🆕 " Home Assistant MQTT-Autodiscovery"
+2. `LoRa_Gateway_OLED.ino` - "For offline use" Display turns on and shows that there is a new letter in the mailbox "the number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
+3. `LoRa_Gateway_WhatsApp.ino` - Sends a message to WhatsApp "You Have New Mail".
+4. `LoRa_Gateway_MQTT.ino` - Sends a row message and RSSI to MQTT Server.
+5. `LoRa_Gateway_HARestAPI.ino` - Sends a message to HA via the API interface.
 
 ### Select TTGO_LoRa Board Version
 
@@ -177,48 +145,39 @@ LoRa.setTxPower(20);                    // TX power in dB, defaults to 17, Suppo
 | LORA RST    | 14   | 23          | 23   | 23   | 23   |
 | LORA DIO0   | 26   | 26          | 26   | 26   | 26   |
 
-### Gateway LoRa Radio Configuration
-
+### Gateway LoRa Radio and WiFi Configuration "LoRa_Gateway_MQTT_JSON.ino"
+- Configuration File `config.h`
 - The settings in the gateway and in the sensor must match.
 
 ```c
-#define SignalBandwidth 125E3
-#define SpreadingFactor 12
-#define CodingRate 8
-#define SyncWord 0xF3
-#define PreambleLength 8
-#define TxPower 20
-float BAND = 868E6; // 433E6 / 868E6 / 915E6 /
+/////////////////////////// Gateway Key ///////////////////////////
+
+#define GATEWAY_KEY "xy" // Keep it short
+
+///////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////// WIFI / MQTT ////////////////////////////////////
+#define WIFI_SSID "xxxx"
+#define WIFI_PASSWORD "xxxx"
+#define MQTT_USERNAME "xxxx"
+#define MQTT_PASSWORD "xxxx"
+#define MQTT_SERVER "xxxx"
+#define MQTT_PORT 1883
+
+
+////////////////////////// LoRa Config ////////////////////////////////////////
+
+#define SIGNAL_BANDWITH 125E3  // signal bandwidth in Hz, defaults to 125E3
+#define SPREADING_FACTOR 8    // ranges from 6-12,default 7 see API docs
+#define CODING_RATE 5          // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
+#define SYNC_WORD 0xF3         // byte value to use as the sync word, defaults to 0x12
+#define PREAMBLE_LENGTH 6      // Supported values are between 6 and 65535.
+#define TX_POWER 20            // TX power in dB, defaults to 17, Supported values are 2 to 20
+#define BAND 868E6             // 433E6 / 868E6 / 915E6
+
+///////////////////////////////////////////////////////////////////////////////
 ```
 
-### New Mail Key Configuration
-
-- In `LoRa_Gateway_OLED.ino` and `LoRa_Gateway_WhatsApp.ino`
-
-```c
-String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
-String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
-```
-
-### WiFi Configuration
-
-- In `LoRa_Gateway_MQTT.ino`, `LoRa_Gateway_HARestAPI.ino` and `LoRa_Gateway_WhatsApp.ino`
-
-```c
-const char* ssid = "Your_WIFI_SSID";
-const char* password = "Your_WIFI_password";
-```
-
-### MQTT Configuration
-
-- Only in `LoRa_Gateway_MQTT.ino`
-
-```c
-const char* mqtt_username = "Your_mqtt_username";
-const char* mqtt_password = "Your_mqtt_password";
-const char* mqtt_server = "Your_mqtt/homeassistant server IP";
-const int mqtt_port = 1883;
-```
 
 ## HARestAPI Configuration
 
@@ -231,23 +190,6 @@ uint16_t ha_port = 8123;
 const char* ha_pwd = "HA_PASSWORD";
 ```
 
-# Home Assistant Configuration
-
-## MQTT
-
-### Create a Sensor only For 'LoRa_Gateway_MQTT_Simple.ino', for 'LoRa_Gateway_MQTT_Auto_Discovery.ino' it's not required.
-
-- File `loragateway.yaml`
-
-```yaml
-mqtt:
-  sensor:
-    - name: "LoRa_Code"
-      state_topic: "LoRa-Gateway/Code"
-
-    - name: "LoRa_RSSI"
-      state_topic: "LoRa-Gateway/RSSI"
-```
 
 ## HARestAPI
 
