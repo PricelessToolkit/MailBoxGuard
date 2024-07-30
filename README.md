@@ -229,3 +229,30 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 3. Click Upload Using Programmer or "Ctrl + Shift + U"
 
 Done! Once the sensor is triggered for the first time, it will appear in the MQTT devices list on Home Assistant.
+
+# Home Assistant Configuration
+
+### MailBox Status Reset and Dismiss Notification
+
+```yaml
+alias: MailBox Status Reset and Dismiss Notification
+sequence:
+  - service: mqtt.publish
+    data:
+      qos: "0"
+      retain: true
+      topic: homeassistant/sensor/YourSensorName/state
+      payload: empty
+  - service: notify.mobile_app_doogee_v20pro
+    data:
+      data:
+        tag: mailbox
+      message: clear_notification
+  - service: notify.mobile_app_oneplus8t
+    data:
+      message: clear_notification
+      data:
+        tag: mailbox
+mode: single
+
+```
