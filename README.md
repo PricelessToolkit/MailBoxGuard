@@ -68,19 +68,8 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/Polarity.jpg" width="600" height="340"/>
 
-# Mailbox Sensor Programming
 
-For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use my other open-source project "UNIProg Programmer" [GitHub](https://github.com/PricelessToolkit/UNIProg_Programmer)
-
-### Connection Diagram
-
-| UNIProg | MailBox Guard |
-| ------- | ------------- |
-| GND     | GND           |
-| 3v3     | 3v3           |
-| UPD     | UPD           |
-
-# Arduino Setup "IDE 2.0.x unsupported"
+# Arduino IDE Setup
 
 > [!NOTE]
 >  For the Library "megaTinyCore" the official recommendation is. Only versions of the Arduino IDE downloaded from https://arduino.cc should be used, NEVER from a Linux package manager. The golden standard is "V1.8.13".
@@ -97,10 +86,6 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
   - UrlEncode
   - HARestAPI "Sketch > Include Library > Add .ZIP Library..."
     - https://github.com/debsahu/HARestAPI
-
-# MailBox Sensor Configuration
-
-<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"  width="600" height="398" />
 
 
 # Gateway Configuration
@@ -147,7 +132,7 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 
 ### Gateway LoRa Radio and WiFi Configuration "LoRa_Gateway_MQTT_JSON.ino"
 - Configuration File `config.h`
-- The settings in the gateway and in the sensor must match.
+- The LoRa settings in the gateway and in the sensor must match.
 
 ```c
 /////////////////////////// Gateway Key ///////////////////////////
@@ -168,8 +153,8 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 ////////////////////////// LoRa Config ////////////////////////////////////////
 
 #define SIGNAL_BANDWITH 125E3  // signal bandwidth in Hz, defaults to 125E3
-#define SPREADING_FACTOR 8    // ranges from 6-12,default 7 see API docs
-#define CODING_RATE 5          // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
+#define SPREADING_FACTOR 8    // ranges from 6-12, default 7 see API docs
+#define CODING_RATE 5          // Supported values are between 5 and 8, corresponding to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
 #define SYNC_WORD 0xF3         // byte value to use as the sync word, defaults to 0x12
 #define PREAMBLE_LENGTH 6      // Supported values are between 6 and 65535.
 #define TX_POWER 20            // TX power in dB, defaults to 17, Supported values are 2 to 20
@@ -178,145 +163,17 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 ///////////////////////////////////////////////////////////////////////////////
 ```
 
+# Mailbox Sensor Programming
 
-## HARestAPI Configuration
+For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use my other open-source project "UNIProg Programmer" [GitHub](https://github.com/PricelessToolkit/UNIProg_Programmer)
 
-- Open `LoRa_Gateway_HARestAPI.ino`
-- For the `ha_pwd` go to your User Profile > Long-Lived Access Tokens > Create Token
+### Connection Diagram
 
-```c
-const char* ha_ip = "192.168.0.xxx";
-uint16_t ha_port = 8123;
-const char* ha_pwd = "HA_PASSWORD";
-```
+| UNIProg | MailBox Guard |
+| ------- | ------------- |
+| GND     | GND           |
+| 3v3     | 3v3           |
+| UPD     | UPD           |
 
 
-## HARestAPI
-
-- File `configuration.yaml`
-
-```yaml
-input_boolean:
-  mailbox_guard_motion:
-    name: Mailbox Guard Motion
-    icon: mdi:mail
-  mailbox_guard_low_battery:
-    name: Mailbox Guard Low Battery
-    icon: mdi:battery
-
-input_number:
-  mailbox_guard_count:
-    name: Mailbox Guard Count
-    min: 0
-    max: 255
-    icon: mdi:mail
-  mailbox_guard_battery:
-    name: Mailbox Guard Battery
-    min: 0
-    max: 100
-    icon: mdi:battery
-  mailbox_guard_rssi:
-    name: Mailbox Guard RSSI
-    min: -196
-    max: 63
-    icon: mdi:signal
-  mailbox_guard_snr:
-    name: Mailbox Guard SNR
-    min: -32.0
-    max: 32.0
-    icon: mdi:waves
-```
-
-- File `automation.yaml`
-
-```yaml
-- id: "1693702614043"
-  alias: Mailbox Guard Motion
-  description: ""
-  trigger:
-    - platform: state
-      entity_id: input_boolean.mailbox_guard_motion
-      to: "on"
-  condition: []
-  action:
-    - service: notify.notify
-      data:
-        message: You've Got Mail!
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.mailbox_guard_count
-        value: "{{ (states.input_number.mailbox_guard_count.state | int) + 1 }}"
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.mailbox_guard_motion
-  mode: single
-- id: "1693703621871"
-  alias: Mailbox Guard Low Battery
-  description: ""
-  trigger:
-    - platform: state
-      entity_id: input_boolean.mailbox_guard_low_battery
-      to: "on"
-  condition: []
-  action:
-    - service: notify.notify
-      data:
-        message: Mailbox Guard Low Battery!
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.mailbox_guard_low_battery
-  mode: single
-```
-
-- Dashboard card
-
-```yaml
-type: entities
-title: Mailbox Guard
-show_header_toggle: false
-entities:
-  - type: conditional
-    conditions: []
-    row:
-      type: sensor-entity
-      entity: input_number.mailbox_guard_count
-      name: Motion Count
-  - type: button
-    icon: mdi:sync
-    name: Reset Count
-    action_name: RESET
-    tap_action:
-      action: call-service
-      service: input_number.set_value
-      data:
-        entity_id: input_number.mailbox_guard_count
-        value: 0
-  - type: conditional
-    conditions: []
-    row:
-      type: sensor-entity
-      entity: input_number.mailbox_guard_battery
-      name: Battery
-  - type: conditional
-    conditions: []
-    row:
-      type: sensor-entity
-      entity: input_number.mailbox_guard_rssi
-      name: RSSI
-  - type: conditional
-    conditions: []
-    row:
-      type: sensor-entity
-      entity: input_number.mailbox_guard_snr
-      name: SNR
-```
-
-### MailBox Guard motion detection events
-
-1. Your phone receives a notification from HA `You've Got Mail!`
-2. The MailBox Guard will add a count to the `Motion Count`
-3. When you fetch the mail select the `RESET` button
-
-![](/img/HARestAPI_Notify.png)
-
-![](/img/HARestAPI.png)
+<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"  width="600" height="398" />
