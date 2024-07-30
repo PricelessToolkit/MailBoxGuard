@@ -8,7 +8,9 @@ Your subscription goes a long way in backing my work.
 
 # Long Range "LoRa" Universal MailBox Sensor
 
-### Can be Integrated into Home Assistant, receive notifications via WhatsApp, or be used offline.
+### Can be Integrated into Home Assistant, receive notifications via WhatsApp, or offline.
+
+<img src="img/mailbox_ha.jpg"/>
 
 ### Use Cases
 
@@ -102,7 +104,7 @@ ____________
 -------------
 
 # Choosing a Gateway Hardware
-1. CapiBridge LoRa/ESP-NOW Gateway: I developed this project, featuring multi-protocol support, including LoRa and ESP-NOW. It will be compatible with my future LoRa and ESP-NOW sensor projects. Purchasing this gateway will support my ongoing open-source developments.
+1. [CapiBridge LoRa/ESP-NOW Gateway](https://github.com/PricelessToolkit/CapiBridge): I developed this project, featuring multi-protocol support, including LoRa and ESP-NOW. It will be compatible with my future LoRa and ESP-NOW sensor projects. Purchasing this gateway will support my ongoing open-source developments.
 2. LilyGo LoRa Board: This option is more affordable but only supports LoRa. It may not be compatible with all future projects.
 
 # Choosing Firmware for LoRa Gateway
@@ -233,7 +235,45 @@ Done! Once the sensor is triggered for the first time, it will appear in the MQT
 # Home Assistant Configuration
 
 
-### "Automation" Sensor Notification
+## "Automation" Sensor Notification
+
+<details>
+<summary>"Explanation" Sensor Notification</summary>
+
+This automation is set up to notify a mobile device when new mail is detected in the mailbox. This setup ensures that whenever new mail is detected by the mailbox sensor, a high-priority notification with relevant details and an image is sent to the specified mobile device. The details of the automation are as follows:
+
+#### Trigger
+- **Platform:** State
+- **Entity:** `sensor.mbox_state`
+- **To State:** `mail`
+- **For Duration:** 1 second
+- **From State:** Not specified (null)
+
+This means that the automation will trigger when the state of `sensor.mbox_state` changes to `mail` and remains in that state for at least 1 second. The "From State" being null indicates that the trigger does not depend on the previous state of the sensor.
+
+#### Condition
+There are no conditions specified, so this automation will run whenever the trigger criteria are met.
+
+#### Action
+- **Service:** `notify.mobile_app_doogee_v20pro`
+- **Data:**
+  - **Message:** "Mailbox is Full!"
+  - **Title:** "New Mail!"
+  - **Additional Data:**
+    - **URL:** `/lovelace/home` - A link to the Home Assistant dashboard.
+    - **Persistent:** `true` - Ensures the notification stays on the device until manually dismissed.
+    - **Importance:** `high` - Sets the priority of the notification.
+    - **Channel:** `MailBox` - Specifies the notification channel, useful for Android devices.
+    - **Tag:** `mailbox` - A tag to help categorize the notification.
+    - **Image:** `/media/local/notify/mailbox.jpg` - An image included in the notification.
+    - **Actions:**
+      - **Action:** `received` - A custom action identifier.
+      - **Title:** "I took the parcel" - A label for the action button in the notification.
+
+#### Mode
+- **Mode:** `single` - Ensures that only one instance of this automation can run at a time.
+
+</details>
 
 ```yaml
 
@@ -269,8 +309,49 @@ mode: single
 
 ```
 
-### "Automation"  MailBox Dismiss Notification from Notification
 
+## "Automation"  MailBox Dismiss Notification from Notification
+
+<details>
+<summary>"Explanation" MailBox Dismiss Notification</summary>
+
+This automation is designed to handle the dismissal of a notification when a specific action is triggered on a mobile device. Works by sending an MQTT message to update the state of the mailbox sensor and then clearing the corresponding notifications on specified mobile devices. The details of the automation are as follows:
+
+#### Trigger
+- **Platform:** Event
+- **Event Type:** `mobile_app_notification_action`
+- **Event Data:**
+  - **Action:** `received`
+
+This means the automation is triggered when the mobile app receives a notification action event with the action identifier `received`.
+
+#### Condition
+There are no conditions specified, so this automation will run whenever the trigger criteria are met.
+
+#### Action
+1. **Service:** `mqtt.publish`
+   - **Data:**
+     - **QoS:** `0` - Quality of Service level.
+     - **Retain:** `true` - Retains the message on the MQTT broker.
+     - **Topic:** `homeassistant/sensor/YourSensorName/state` - The MQTT topic to publish to.
+     - **Payload:** `empty` - The message content, indicating the mailbox state is now empty.
+
+2. **Service:** `notify.mobile_app_doogee_v20pro`
+   - **Data:**
+     - **Message:** `clear_notification` - Clears the notification.
+     - **Data:**
+       - **Tag:** `mailbox` - Identifies which notification to clear.
+
+3. **Service:** `notify.mobile_app_oneplus8t`
+   - **Data:**
+     - **Message:** `clear_notification` - Clears the notification.
+     - **Data:**
+       - **Tag:** `mailbox` - Identifies which notification to clear.
+
+#### Mode
+- **Mode:** `single` - Ensures that only one instance of this automation can run at a time.
+
+</details>
 
 ```yaml
 
@@ -287,7 +368,7 @@ action:
     data:
       qos: 0
       retain: true
-      topic: homeassistant/YourSensorName/mbox/state
+      topic: homeassistant/sensor/YourSensorName/state
       payload: empty
   - service: notify.mobile_app_doogee_v20pro
     data:
@@ -304,7 +385,9 @@ mode: single
 
 ```
 
-### "Script" MailBox Status Reset for using from Dashboard
+
+
+## "Script" MailBox Status Reset for using from Dashboard
 
 ```yaml
 alias: MailBox Status Reset and Dismiss Notification
