@@ -232,7 +232,46 @@ Done! Once the sensor is triggered for the first time, it will appear in the MQT
 
 # Home Assistant Configuration
 
-### MailBox Status Reset and Dismiss Notification
+
+### Sensor Notification
+
+```yaml
+
+alias: 📬 LoRa MailBox Sensor Notification
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.mbox_state
+    to: mail
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+    from: null
+condition: []
+action:
+  - service: notify.mobile_app_doogee_v20pro
+    data:
+      message: Mailbox is Full !
+      title: New Mail!
+      data:
+        url: /lovelace/home
+        persistent: true
+        importance: high
+        channel: MailBox
+        tag: mailbox
+        image: /media/local/notify/mailbox.jpg
+        actions:
+          - action: received
+            title: I took the parcel
+mode: single
+
+```
+
+
+
+### MailBox Status Reset script for use from Dashboard
 
 ```yaml
 alias: MailBox Status Reset and Dismiss Notification
