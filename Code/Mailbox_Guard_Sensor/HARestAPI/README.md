@@ -9,24 +9,6 @@ uint16_t ha_port = 8123;
 const char* ha_pwd = "HA_PASSWORD";
 ```
 
-# Home Assistant Configuration
-
-## MQTT
-
-### Create a Sensor only For 'LoRa_Gateway_MQTT_Simple.ino', for 'LoRa_Gateway_MQTT_Auto_Discovery.ino' it's not required.
-
-- File `loragateway.yaml`
-
-```yaml
-mqtt:
-  sensor:
-    - name: "LoRa_Code"
-      state_topic: "LoRa-Gateway/Code"
-
-    - name: "LoRa_RSSI"
-      state_topic: "LoRa-Gateway/RSSI"
-```
-
 ## HARestAPI
 
 - File `configuration.yaml`
