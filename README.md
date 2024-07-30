@@ -81,6 +81,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - Libraries Used
   - LoRa
   - PubSubClient
+  - ArduinoJson.h
   - ESP8266 and ESP32 OLED driver for SSD1306 displays
   - UrlEncode
   - HARestAPI "Sketch > Include Library > Add .ZIP Library..."
@@ -132,7 +133,7 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 | LORA RST    | 14   | 23          | 23   | 23   | 23   |
 | LORA DIO0   | 26   | 26          | 26   | 26   | 26   |
 
-## Setting up WIFI and LoRa in the gateway
+## Setting up WIFI and LoRa in the Gateway
 - Firmware `LoRa_Gateway_MQTT_JSON.ino`
 - Configuration File `config.h`
 - The LoRa settings in the gateway and in the sensor must match.
