@@ -271,7 +271,7 @@ mode: single
 
 ```
 
-This automation is set up to notify a mobile device when new mail is detected in the mailbox. The details of the automation are as follows:
+This automation is set up to notify a mobile device when new mail is detected in the mailbox. This setup ensures that whenever new mail is detected by the mailbox sensor, a high-priority notification with relevant details and an image is sent to the specified mobile device. The details of the automation are as follows:
 
 #### Trigger
 - **Platform:** State
@@ -303,10 +303,6 @@ There are no conditions specified, so this automation will run whenever the trig
 
 #### Mode
 - **Mode:** `single` - Ensures that only one instance of this automation can run at a time.
-
-This setup ensures that whenever new mail is detected by the mailbox sensor, a high-priority notification with relevant details and an image is sent to the specified mobile device.
-
-
 
 
 ### "Automation"  MailBox Dismiss Notification from Notification
