@@ -246,7 +246,7 @@ Done! Once the sensor is triggered for the first time, it will appear in the MQT
 ## "Automation" Sensor Notification
 
 <details>
-<summary>"Explanation" Sensor Notification</summary>
+<summary>Explanation Click here</summary>
 
 This automation is set up to notify a mobile device when new mail is detected in the mailbox. This setup ensures that whenever new mail is detected by the mailbox sensor, a high-priority notification with relevant details and an image is sent to the specified mobile device. The details of the automation are as follows:
 
@@ -321,7 +321,7 @@ mode: single
 ## "Automation"  MailBox Dismiss Notification from Notification
 
 <details>
-<summary>"Explanation" MailBox Dismiss Notification</summary>
+<summary>Explanation Click here</summary>
 
 This automation is designed to handle the dismissal of a notification when a specific action is triggered on a mobile device. Works by sending an MQTT message to update the state of the mailbox sensor and then clearing the corresponding notifications on specified mobile devices. The details of the automation are as follows:
 
