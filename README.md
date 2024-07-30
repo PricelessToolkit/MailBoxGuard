@@ -269,7 +269,40 @@ mode: single
 
 ```
 
+###  MailBox Dismiss Notification from Notification
 
+
+```yaml
+
+alias: 📬 LoRa MailBox Dismiss Notification
+description: ""
+trigger:
+  - platform: event
+    event_data:
+      action: received
+    event_type: mobile_app_notification_action
+condition: []
+action:
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: true
+      topic: homeassistant/YourSensorName/mbox/state
+      payload: empty
+  - service: notify.mobile_app_doogee_v20pro
+    data:
+      message: clear_notification
+      data:
+        tag: mailbox
+  - service: notify.mobile_app_oneplus8t
+    data:
+      message: clear_notification
+      data:
+        tag: mailbox
+mode: single
+
+
+```
 
 ### MailBox Status Reset script for use from Dashboard
 
