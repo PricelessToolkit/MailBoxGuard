@@ -216,4 +216,4 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 ```
 3. Click Upload Using Programmer or "Ctrl + Shift + U"
 
-Done! When the sensor is triggered for the first time, it will appear in the MQTT devices list on Home Assistant.
+Done! Once the sensor is triggered for the first time, it will appear in the MQTT devices list on Home Assistant.
