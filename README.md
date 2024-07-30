@@ -235,7 +235,7 @@ Done! Once the sensor is triggered for the first time, it will appear in the MQT
 # Home Assistant Configuration
 
 
-### "Automation" Sensor Notification
+## "Automation" Sensor Notification
 
 <details>
 <summary>"Explanation" Sensor Notification</summary>
@@ -310,7 +310,7 @@ mode: single
 ```
 
 
-### "Automation"  MailBox Dismiss Notification from Notification
+## "Automation"  MailBox Dismiss Notification from Notification
 
 <details>
 <summary>"Explanation" MailBox Dismiss Notification</summary>
@@ -387,7 +387,7 @@ mode: single
 
 
 
-### "Script" MailBox Status Reset for using from Dashboard
+## "Script" MailBox Status Reset for using from Dashboard
 
 ```yaml
 alias: MailBox Status Reset and Dismiss Notification
