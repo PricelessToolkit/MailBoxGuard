@@ -59,7 +59,19 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 - Programming Protocol
   - UPDI / Serial2UPDI
 
-==============================
+____________
+
+## 📣 Updates, Bugfixes, and Breaking Changes
+
+> [!NOTE]
+>  If you're ready to contribute to the project, your support would be greatly appreciated.
+
+- **30.07.2024**
+  - New optimized Gateway firmware `LoRa_Gateway_MQTT_JSON.ino`
+  - Sensor firmware cleanup `Mailbox_Guard_Sensor_MQTT_JSON.ino`
+
+____________
+
 
 # ⚠️ Battery Polarity ⚠️
 
@@ -151,11 +163,11 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 ///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////// WIFI / MQTT ////////////////////////////////////
-#define WIFI_SSID "xxxx"
-#define WIFI_PASSWORD "xxxx"
-#define MQTT_USERNAME "xxxx"
-#define MQTT_PASSWORD "xxxx"
-#define MQTT_SERVER "xxxx"
+#define WIFI_SSID "wifi-name"
+#define WIFI_PASSWORD "wifi-password"
+#define MQTT_USERNAME "mqtt-username"
+#define MQTT_PASSWORD "mqtt-password"
+#define MQTT_SERVER "IP-Address"
 #define MQTT_PORT 1883
 
 
@@ -172,6 +184,8 @@ The Mailbox Guard is a device that detects when a new letter or package has been
 ///////////////////////////////////////////////////////////////////////////////
 ```
 
+The remaining is to upload the code into the LilyGo board after that the "LoRaGateway" RSSI entity will appear in the MQTT devices list.
+
 
 # Mailbox Sensor configuration and Programming
 
@@ -186,7 +200,7 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 | UPD     | UPD           |
 
 1. In Arduino IDE select the programmer "SerialUPDI-230400 baud"
-2. Select board configuration is shown below "See screenshot"
+2. Select board configuration as shown below "screenshot"
 
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"  width="600" height="398" />
 
@@ -214,4 +228,103 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 ```
 3. Click Upload Using Programmer or "Ctrl + Shift + U"
 
-Done! When the sensor is triggered for the first time, it will appear in the MQTT devices list on Home Assistant.
+Done! Once the sensor is triggered for the first time, it will appear in the MQTT devices list on Home Assistant.
+
+# Home Assistant Configuration
+
+
+### "Automation" Sensor Notification
+
+```yaml
+
+alias: 📬 LoRa MailBox Sensor Notification
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.mbox_state
+    to: mail
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+    from: null
+condition: []
+action:
+  - service: notify.mobile_app_doogee_v20pro
+    data:
+      message: Mailbox is Full !
+      title: New Mail!
+      data:
+        url: /lovelace/home
+        persistent: true
+        importance: high
+        channel: MailBox
+        tag: mailbox
+        image: /media/local/notify/mailbox.jpg
+        actions:
+          - action: received
+            title: I took the parcel
+mode: single
+
+```
+
+### "Automation"  MailBox Dismiss Notification from Notification
+
+
+```yaml
+
+alias: 📬 LoRa MailBox Dismiss Notification
+description: ""
+trigger:
+  - platform: event
+    event_data:
+      action: received
+    event_type: mobile_app_notification_action
+condition: []
+action:
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: true
+      topic: homeassistant/YourSensorName/mbox/state
+      payload: empty
+  - service: notify.mobile_app_doogee_v20pro
+    data:
+      message: clear_notification
+      data:
+        tag: mailbox
+  - service: notify.mobile_app_oneplus8t
+    data:
+      message: clear_notification
+      data:
+        tag: mailbox
+mode: single
+
+
+```
+
+### "Script" MailBox Status Reset for using from Dashboard
+
+```yaml
+alias: MailBox Status Reset and Dismiss Notification
+sequence:
+  - service: mqtt.publish
+    data:
+      qos: "0"
+      retain: true
+      topic: homeassistant/sensor/YourSensorName/state
+      payload: empty
+  - service: notify.mobile_app_doogee_v20pro
+    data:
+      data:
+        tag: mailbox
+      message: clear_notification
+  - service: notify.mobile_app_oneplus8t
+    data:
+      message: clear_notification
+      data:
+        tag: mailbox
+mode: single
+
+```
