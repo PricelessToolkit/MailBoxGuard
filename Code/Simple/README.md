@@ -22,12 +22,7 @@ To pair these gateways with a sensor, use the sensor code `Mailbox_Guard_Sensor_
 
 - Libraries Used
   - LoRa
-  - PubSubClient
-  - ArduinoJson.h
   - ESP8266 and ESP32 OLED driver for SSD1306 displays
-  - UrlEncode
-  - HARestAPI "Sketch > Include Library > Add .ZIP Library..."
-    - https://github.com/debsahu/HARestAPI
   
 ## Gateway Configuration
 
