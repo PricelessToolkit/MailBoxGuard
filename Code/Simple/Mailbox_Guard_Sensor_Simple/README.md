@@ -103,4 +103,6 @@ String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT"
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+4. Click "Upload Using Programmer" or "Ctrl + Shift + U"
+
 ```
