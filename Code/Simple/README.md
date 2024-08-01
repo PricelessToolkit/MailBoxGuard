@@ -25,6 +25,8 @@ To pair these gateways with a sensor, use the sensor code `Mailbox_Guard_Sensor_
 - Libraries Used
   - LoRa
   - ESP8266 and ESP32 OLED driver for SSD1306 displays
+  - HTTPClient
+  - UrlEncode
   
 ## Gateway Configuration
 
