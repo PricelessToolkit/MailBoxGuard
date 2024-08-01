@@ -7,8 +7,6 @@
 
 3. **`LoRa_Gateway_MQTT.ino`** - Sends raw messages and RSSI to an MQTT server.
 
-4. **`LoRa_Gateway_HARestAPI.ino`** - Sends new mail notifications to Home Assistant via REST API.
-
 
 To pair these gateways with a sensor, use the sensor code `Mailbox_Guard_Sensor_Simple.ino`
 
