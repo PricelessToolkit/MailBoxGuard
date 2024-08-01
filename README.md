@@ -8,15 +8,14 @@ Your subscription goes a long way in backing my work.
 
 # Long Range "LoRa" Universal MailBox Sensor
 
-### Can be Integrated into Home Assistant, receive notifications via WhatsApp, or offline.
+### Can be integrated with Home Assistant, used via WhatsApp, or be operated offline.
 
 <img src="img/mailbox_ha.jpg"/>
 
 ### Use Cases
 
 - Mailbox Sensor - "Code examples are provided"
-- Motion Sensor
-- Door Window Sensor
+- Alarm / Motion Sensor
 
 ### How it works - Mailbox Use Case
 
@@ -108,11 +107,19 @@ ____________
 2. LilyGo LoRa Board: This option is more affordable but only supports LoRa. It may not be compatible with all future projects.
 
 # Choosing Firmware for LoRa Gateway
-1. `LoRa_Gateway_MQTT_JSON.ino` - 🆕 " Home Assistant MQTT-Autodiscovery"
-2. `LoRa_Gateway_OLED.ino` - "For offline use" Display turns on and shows that there is a new letter in the mailbox "the number of letters", "signal strength" and "Battery State". After taking your mail, you need to press the reset button on the gateway.
-3. `LoRa_Gateway_WhatsApp.ino` - Sends a message to WhatsApp "You Have New Mail".
-4. `LoRa_Gateway_MQTT.ino` - Sends a row message and RSSI to MQTT Server.
-5. `LoRa_Gateway_HARestAPI.ino` - Sends a message to HA via the API interface.
+
+1. **`LoRa_Gateway_MQTT_JSON.ino`** - 🆕 "Home Assistant MQTT Autodiscovery": Automatically discovers and integrates sensors with Home Assistant via MQTT.
+   
+2. **`LoRa_Gateway_OLED.ino`** - "For Offline Use": Displays new mail notifications, including letter count, signal strength, and battery status. Requires a reset after mail retrieval.
+
+3. **`LoRa_Gateway_WhatsApp.ino`** - Sends a "You have new mail" message to WhatsApp.
+
+4. **`LoRa_Gateway_MQTT.ino`** - Sends raw messages and RSSI to an MQTT server.
+
+5. **`LoRa_Gateway_HARestAPI.ino`** - Sends new mail notifications to Home Assistant via REST API.
+
+
+
 
 # Gateway Configuration
 
@@ -228,7 +235,7 @@ For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use m
 ///////////////////////////////////////////////////////////////////////////////
 
 ```
-3. Click Upload Using Programmer or "Ctrl + Shift + U"
+3. Click "Upload Using Programmer" or "Ctrl + Shift + U"
 
 Done! Once the sensor is triggered for the first time, it will appear in the MQTT devices list on Home Assistant.
 
@@ -238,7 +245,7 @@ Done! Once the sensor is triggered for the first time, it will appear in the MQT
 ## "Automation" Sensor Notification
 
 <details>
-<summary>"Explanation" Sensor Notification</summary>
+<summary>Explanation Click here</summary>
 
 This automation is set up to notify a mobile device when new mail is detected in the mailbox. This setup ensures that whenever new mail is detected by the mailbox sensor, a high-priority notification with relevant details and an image is sent to the specified mobile device. The details of the automation are as follows:
 
@@ -313,7 +320,7 @@ mode: single
 ## "Automation"  MailBox Dismiss Notification from Notification
 
 <details>
-<summary>"Explanation" MailBox Dismiss Notification</summary>
+<summary>Explanation Click here</summary>
 
 This automation is designed to handle the dismissal of a notification when a specific action is triggered on a mobile device. Works by sending an MQTT message to update the state of the mailbox sensor and then clearing the corresponding notifications on specified mobile devices. The details of the automation are as follows:
 
