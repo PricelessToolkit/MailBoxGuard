@@ -10,7 +10,6 @@
 
 SSD1306Wire display(OLED_ADDRESS, OLED_SDA, OLED_SCL);
 
-
 #define BAUD 115200
 
 #define MQTT_RETAIN true
@@ -143,7 +142,7 @@ void setup() {
   LoRa.setCodingRate4(CODING_RATE);  // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
   LoRa.setSyncWord(SYNC_WORD);  // byte value to use as the sync word, defaults to 0x12
   LoRa.setPreambleLength(PREAMBLE_LENGTH);  // Supported values are between 6 and 65535.
-  LoRa.disableCrc();  // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc();
+  LoRa.disableCrc();  // Enable or disable CRC usage, by default a CRC is not used LoRa.disableCrc() / LoRa.enableCrc();;
   LoRa.setTxPower(TX_POWER);  // TX power in dB, defaults to 17, Supported values are 2 to 20
 
 }
