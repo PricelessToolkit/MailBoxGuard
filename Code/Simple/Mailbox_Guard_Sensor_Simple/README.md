@@ -64,3 +64,43 @@ To pair these gateways with a sensor, use the sensor code `Mailbox_Guard_Sensor_
 | LORA CS     | 18   | 18          | 18   | 18   | 18   |
 | LORA RST    | 14   | 23          | 23   | 23   | 23   |
 | LORA DIO0   | 26   | 26          | 26   | 26   | 26   |
+
+
+## Mailbox Sensor configuration and Programming
+
+For programming MailBox Guard, you need any 3.3V "UPDI programmer" You can use my other open-source project "UNIProg Programmer" [GitHub](https://github.com/PricelessToolkit/UNIProg_Programmer)
+
+### UPDI Connection Diagram
+
+| UNIProg | MailBox Guard |
+| ------- | ------------- |
+| GND     | GND           |
+| 3v3     | 3v3           |
+| UPD     | UPD           |
+
+1. In Arduino IDE select the programmer "SerialUPDI-230400 baud"
+2. Select board configuration as shown below "screenshot"
+
+<img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/arduino_board_config.jpg"  width="600" height="398" />
+
+3. Open Sensor firmware `Mailbox_Guard_Sensor_Simple` then change  `NewMailCode`, `LowBatteryCode`, and `LoRa` settings according to your needs.
+
+> [!NOTE]
+> The LoRa settings must match the gateway ones.
+
+```c
+//////////////////////////////////// CONFIG /////////////////////////////////////////////
+
+#define SignalBandwidth 125E3
+#define SpreadingFactor 12
+#define CodingRate 8
+#define SyncWord 0xF3
+#define PreambleLength 8
+#define TxPower 20
+#define BAND 868E6     // frequency in Hz (ASIA 433E6, EU 868E6, US 915E6)
+String NewMailCode = "REPLACE_WITH_NEW_MAIL_CODE"; // For Example "0xA2B2";
+String LowBatteryCode = "REPLACE_WITH_LOW_BATTERY_CODE"; // For Example "0xLBAT";
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+```
