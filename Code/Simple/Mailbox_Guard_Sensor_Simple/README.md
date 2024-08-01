@@ -1,10 +1,14 @@
 ## Gateway code
 
-For the TTGO_LoRa board, you can use the following firmwares:
+   
+1. **`LoRa_Gateway_OLED.ino`** - "For Offline Use": Displays new mail notifications, including letter count, signal strength, and battery status. Requires a reset after mail retrieval.
 
-- LoRa_Gateway_MQTT_Simple
-- LoRa_Gateway_OLED
-- LoRa_Gateway_WhatsApp
+2. **`LoRa_Gateway_WhatsApp.ino`** - Sends a "You have new mail" message to WhatsApp.
+
+3. **`LoRa_Gateway_MQTT.ino`** - Sends raw messages and RSSI to an MQTT server.
+
+4. **`LoRa_Gateway_HARestAPI.ino`** - Sends new mail notifications to Home Assistant via REST API.
+
 
 To pair these gateways with a sensor, use the sensor code `Mailbox_Guard_Sensor_Simple.ino`
 
