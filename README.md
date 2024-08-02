@@ -68,7 +68,7 @@ ____________
 >  If you're ready to contribute to the project, your support would be greatly appreciated.
 
 - **30.07.2024**
-  - New optimized multisensor Gateway firmware `LoRa_Gateway_MQTT_JSON.ino`
+  - New multisensor Gateway firmware `LoRa_Gateway_MQTT_JSON.ino`
   - Sensor firmware cleanup `Mailbox_Guard_Sensor_MQTT_JSON.ino`
 
 ____________
