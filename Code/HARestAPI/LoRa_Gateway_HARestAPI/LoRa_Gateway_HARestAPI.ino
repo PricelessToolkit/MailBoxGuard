@@ -2,6 +2,7 @@
 #include <SPI.h>
 #include <LoRa.h>
 #include <WiFiClient.h>
+#include <WiFi.h>
 #include <HARestAPI.h>          // https://github.com/debsahu/HARestAPI
 #include "SSD1306Wire.h"
 SSD1306Wire display(OLED_ADDRESS, OLED_SDA, OLED_SCL);

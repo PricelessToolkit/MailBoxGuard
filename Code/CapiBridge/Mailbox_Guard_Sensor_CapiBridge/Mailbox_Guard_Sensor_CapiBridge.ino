@@ -13,7 +13,7 @@
 #define SYNC_WORD 0xF3
 #define PREAMBLE_LENGTH 6
 #define TX_POWER 20
-#define BAND 868E6  // 433E6 / 868E6 / 915E6
+#define BAND 868E6 // 433E6 / 868E6 / 915E6
 #define NODE_NAME "mbox"
 #define GATEWAY_KEY "xy" // must match CapiBridge's key
 

@@ -5,8 +5,8 @@
 #define LORA_V1_0_OLED  0
 #define LORA_V1_2_OLED  0
 #define LORA_V1_3_OLED  0
-#define LORA_V1_6_OLED  0
-#define LORA_V2_0_OLED  1  // ON = 1 / OFF = 0
+#define LORA_V1_6_OLED  1
+#define LORA_V2_0_OLED  0  // ON = 1 / OFF = 0
 
 //////////////////////////////////////////////////////
 

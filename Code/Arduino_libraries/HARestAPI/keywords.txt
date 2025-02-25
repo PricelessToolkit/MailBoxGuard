@@ -1,0 +1,41 @@
+#######################################
+# Syntax Coloring Map For HARestAPI
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+HARestAPI	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+setHAServer	KEYWORD2
+setHAServer	KEYWORD2
+setHAServer	KEYWORD2
+setHAPassword	KEYWORD2
+useSSL	KEYWORD2
+setFingerPrint	KEYWORD2
+setRGB	KEYWORD2
+setDebugMode	KEYWORD2
+setComponent	KEYWORD2
+setURL	KEYWORD2
+sendCustomHAData	KEYWORD2
+sendHA	KEYWORD2
+sendHAURL	KEYWORD2
+sendHAComponent	KEYWORD2
+sendHAComponent	KEYWORD2
+sendHARGBLight	KEYWORD2
+sendHARGBLight	KEYWORD2
+sendHARGBLight	KEYWORD2
+sendHARGBLight	KEYWORD2
+sendHALight	KEYWORD2
+sendHASwitch	KEYWORD2
+sendHALight	KEYWORD2
+sendHASwitch	KEYWORD2
+sendHAAutomation	KEYWORD2
+sendHAAutomation	KEYWORD2
+sendGetHA	KEYWORD2
+#######################################
+# Constants (LITERAL1)
+#######################################
