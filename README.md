@@ -1,3 +1,5 @@
+## MailBox Guard Production is Discontinued. The New version "[PirBOX-LITE](https://github.com/PricelessToolkit/PirBOX-LITE) or PirBOX-MAX"
+
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/mailbox_guard.jpg"/>
 
 🤗 Please consider subscribing to my [YouTube channel](https://www.youtube.com/@PricelessToolkit/videos)
@@ -67,6 +69,8 @@ ____________
 > [!NOTE]
 >  If you're ready to contribute to the project, your support would be greatly appreciated.
 
+- **08.05.2025**
+  - MailBox Guard Production is Discontinued. The New version "[PirBOX-LITE](https://github.com/PricelessToolkit/PirBOX-LITE) or PirBOX-MAX"
 - **30.07.2024**
   - New multisensor Gateway firmware `LoRa_Gateway_MQTT_JSON.ino`
   - Sensor firmware cleanup `Mailbox_Guard_Sensor_MQTT_JSON.ino`
