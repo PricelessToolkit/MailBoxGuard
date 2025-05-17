@@ -1,4 +1,4 @@
-## ⚠️ MailBox Guard Production is Discontinued. The New version "[PirBOX-LITE](https://github.com/PricelessToolkit/PirBOX-LITE) or PirBOX-MAX"
+## ⚠️ MailBox Guard Production is Discontinued. The New version "[PirBOX-LITE](https://github.com/PricelessToolkit/PirBOX-LITE) or [PirBOX-MAX](https://github.com/PricelessToolkit/PirBOX-MAX)"
 
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/mailbox_guard.jpg"/>
 
