@@ -1,3 +1,5 @@
+## ⚠️ MailBox Guard Production is Discontinued. The New version "[PirBOX-LITE](https://github.com/PricelessToolkit/PirBOX-LITE) or [PirBOX-MAX](https://github.com/PricelessToolkit/PirBOX-MAX)"
+
 <img src="https://raw.githubusercontent.com/PricelessToolkit/MailBoxGuard/main/img/mailbox_guard.jpg"/>
 
 🤗 Please consider subscribing to my [YouTube channel](https://www.youtube.com/@PricelessToolkit/videos)
@@ -67,6 +69,8 @@ ____________
 > [!NOTE]
 >  If you're ready to contribute to the project, your support would be greatly appreciated.
 
+- **08.05.2025**
+  - MailBox Guard Production is Discontinued. The New version "[PirBOX-LITE](https://github.com/PricelessToolkit/PirBOX-LITE) or PirBOX-MAX"
 - **30.07.2024**
   - New multisensor Gateway firmware `LoRa_Gateway_MQTT_JSON.ino`
   - Sensor firmware cleanup `Mailbox_Guard_Sensor_MQTT_JSON.ino`
@@ -185,7 +189,7 @@ ____________
 #define SIGNAL_BANDWITH 125E3  // signal bandwidth in Hz, defaults to 125E3
 #define SPREADING_FACTOR 8    // ranges from 6-12, default 7 see API docs
 #define CODING_RATE 5          // Supported values are between 5 and 8, corresponding to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
-#define SYNC_WORD 0xF3         // byte value to use as the sync word, defaults to 0x12
+#define SYNC_WORD 0x12         // byte value to use as the sync word, defaults to 0x12
 #define PREAMBLE_LENGTH 6      // Supported values are between 6 and 65535.
 #define TX_POWER 20            // TX power in dB, defaults to 17, Supported values are 2 to 20
 #define BAND 868E6             // 433E6 / 868E6 / 915E6
