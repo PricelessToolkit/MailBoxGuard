@@ -5,7 +5,7 @@
 #include <LoRa.h>
 #include <avr/sleep.h>
 
-///////////////////////////////// CHANGE THIS /////////////////////////////////
+///////////////////////////////// LoRa RADIO /////////////////////////////////
 
 #define SIGNAL_BANDWITH 125E3
 #define SPREADING_FACTOR 8
@@ -14,8 +14,17 @@
 #define PREAMBLE_LENGTH 6
 #define TX_POWER 20
 #define BAND 868E6 // 433E6 / 868E6 / 915E6
+
+//////////////////////////// Name and Keys/Encryption ////////////////////////
+
 #define NODE_NAME "mbox"
 #define GATEWAY_KEY "xy" // must match CapiBridge's key
+#define Encryption true                            // Global Payload obfuscation (Encryption)
+#define encryption_key_length 4                    // must match number of bytes in the XOR key array
+#define encryption_key { 0x4B, 0xA3, 0x3F, 0x9C }  // Multi-byte XOR key (between 2–16 values).
+                                                   // Use random-looking HEX values (from 0x00 to 0xFF).
+                                                   // Must match exactly on both sender and receiver.
+                                                   // Example: { 0x1F, 0x7E, 0xC2, 0x5A }  ➜ 4-byte key.
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -43,6 +52,22 @@ void setup() {
 }
 
 
+// -------------------- Xor Encryp/Decrypt -------------------- //
+
+String xorCipher(String input) {
+  const byte key[] = encryption_key;
+  const int keyLength = encryption_key_length;
+
+  String output = "";
+  for (int i = 0; i < input.length(); i++) {
+    byte keyByte = key[i % keyLength];
+    output += char(input[i] ^ keyByte);
+  }
+  return output;
+}
+
+
+
 void loop() {
   if (loopcounter < 2) {
     delay(10);
@@ -53,9 +78,15 @@ void loop() {
     percentage = constrain(percentage, 0, 100);
 	int intPercentage = (int)percentage;
 	
-    LoRa.print("{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + String(intPercentage) + "}");
-    LoRa.endPacket();
-    delay(10);
+  String payload = "{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + String(intPercentage) + "}";
+
+  #if defined(Encryption)
+    payload = xorCipher(payload);
+  #endif
+
+  LoRa.print(payload);
+  LoRa.endPacket();
+  delay(10);
   }
 
   if (loopcounter > 2) {
