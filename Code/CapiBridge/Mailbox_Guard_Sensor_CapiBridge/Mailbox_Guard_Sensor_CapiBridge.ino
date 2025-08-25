@@ -7,11 +7,11 @@
 
 ///////////////////////////////// LoRa RADIO /////////////////////////////////
 
-#define SIGNAL_BANDWITH 125E3
-#define SPREADING_FACTOR 8
+#define SIGNAL_BANDWITH 250E3
+#define SPREADING_FACTOR 10
 #define CODING_RATE 5
-#define SYNC_WORD 0xF3
-#define PREAMBLE_LENGTH 6
+#define SYNC_WORD 0x12
+#define PREAMBLE_LENGTH 12
 #define TX_POWER 20
 #define BAND 868E6 // 433E6 / 868E6 / 915E6
 
@@ -22,9 +22,6 @@
 #define Encryption true                            // Global Payload obfuscation (Encryption)
 #define encryption_key_length 4                    // must match number of bytes in the XOR key array
 #define encryption_key { 0x4B, 0xA3, 0x3F, 0x9C }  // Multi-byte XOR key (between 2–16 values).
-                                                   // Use random-looking HEX values (from 0x00 to 0xFF).
-                                                   // Must match exactly on both sender and receiver.
-                                                   // Example: { 0x1F, 0x7E, 0xC2, 0x5A }  ➜ 4-byte key.
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -42,59 +39,61 @@ void setup() {
     while (1) {}
   }
 
-  LoRa.setSignalBandwidth(SIGNAL_BANDWITH);  // signal bandwidth in Hz, defaults to 125E3
-  LoRa.setSpreadingFactor(SPREADING_FACTOR);  // supports values 6 - 12, defaults to 7
-  LoRa.setCodingRate4(CODING_RATE);  // supported values 5 - 8, defaults to 5
-  LoRa.setSyncWord(SYNC_WORD);  // byte value to use as the sync word, defaults to 0x12
-  LoRa.setPreambleLength(PREAMBLE_LENGTH);  // supports values 6 - 65535, defaults to 8
-  LoRa.disableCrc();   // enable or disable CRC usage, defaults to disabled
-  LoRa.setTxPower(TX_POWER);  // TX power in dB, supports values 2 - 20, defaults to 17
+  LoRa.setSignalBandwidth(SIGNAL_BANDWITH);   // defaults to 125E3
+  LoRa.setSpreadingFactor(SPREADING_FACTOR);  // 6 - 12, defaults to 7
+  LoRa.setCodingRate4(CODING_RATE);           // 5 - 8, defaults to 5
+  LoRa.setSyncWord(SYNC_WORD);                // defaults to 0x12
+  LoRa.setPreambleLength(PREAMBLE_LENGTH);    // 6 - 65535, defaults to 8
+  LoRa.disableCrc();                          // defaults to disabled
+  LoRa.setTxPower(TX_POWER);                  // 2 - 20, defaults to 17
 }
 
-
-// -------------------- Xor Encryp/Decrypt -------------------- //
-
-String xorCipher(String input) {
-  const byte key[] = encryption_key;
-  const int keyLength = encryption_key_length;
-
-  String output = "";
-  for (int i = 0; i < input.length(); i++) {
-    byte keyByte = key[i % keyLength];
-    output += char(input[i] ^ keyByte);
+// -------------------- Binary-safe XOR helper -------------------- //
+static inline void xorBuffer(uint8_t* buf, size_t len) {
+#if Encryption
+  static const uint8_t key[] = encryption_key;
+  const int K = encryption_key_length;
+  for (size_t i = 0; i < len; ++i) {
+    buf[i] ^= key[i % K];
   }
-  return output;
+#else
+  (void)buf; (void)len;
+#endif
 }
-
-
 
 void loop() {
   if (loopcounter < 2) {
     delay(10);
-    LoRa.beginPacket();
+
+    // Build JSON payload
     float volts = analogReadEnh(PIN_PB4, 12) * (1.1 / 4096) * (30 + 10) / 10;
-    // Calculate percentage
     float percentage = ((volts - 3.2) / (4.15 - 3.2)) * 100;
     percentage = constrain(percentage, 0, 100);
-	int intPercentage = (int)percentage;
-	
-  String payload = "{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + String(intPercentage) + "}";
+    int intPercentage = (int)percentage;
 
-  #if defined(Encryption)
-    payload = xorCipher(payload);
-  #endif
+    String payload = "{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + String(intPercentage) + "}";
 
-  LoRa.print(payload);
-  LoRa.endPacket();
-  delay(10);
+    // Copy to buffer and XOR (binary-safe)
+    uint8_t buf[255];
+    size_t len = payload.length();
+    if (len > sizeof(buf)) len = sizeof(buf);
+    memcpy(buf, payload.c_str(), len);
+    xorBuffer(buf, len);
+
+    // Send raw bytes (not print) to preserve binary data
+    LoRa.beginPacket();
+    LoRa.write(buf, len);
+    LoRa.endPacket();
+
+    delay(10);
   }
 
   if (loopcounter > 2) {
-    LoRa.sleep();  // Put the radio in sleep mode
-    digitalWrite(3, LOW);  // Sets the Latch pin 3 LOW For power cut off
+    LoRa.sleep();             // Put the radio in sleep mode
+    digitalWrite(3, LOW);     // Latch pin 3 LOW for power cut off
     set_sleep_mode(SLEEP_MODE_PWR_DOWN);
     sleep_enable();
-    sleep_mode();  // Now enter sleep mode.
+    sleep_mode();             // Enter sleep mode
   }
 
   loopcounter++;
