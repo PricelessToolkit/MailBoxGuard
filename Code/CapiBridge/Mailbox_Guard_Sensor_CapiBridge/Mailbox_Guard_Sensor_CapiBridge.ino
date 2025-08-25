@@ -7,7 +7,13 @@
 
 ///////////////////////////////// LoRa RADIO /////////////////////////////////
 
-
+#define SIGNAL_BANDWITH 250E3
+#define SPREADING_FACTOR 10
+#define CODING_RATE 5
+#define SYNC_WORD 0x12
+#define PREAMBLE_LENGTH 12
+#define TX_POWER 20
+#define BAND 868E6 // 433E6 / 868E6 / 915E6
 
 //////////////////////////// Name and Keys/Encryption ////////////////////////
 
