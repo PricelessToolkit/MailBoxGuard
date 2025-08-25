@@ -69,6 +69,8 @@ ____________
 > [!NOTE]
 >  If you're ready to contribute to the project, your support would be greatly appreciated.
 
+- **22.05.2025** - Breaking Change (XOR obfuscation "Encryption" for LoRa).
+- - CapiBridge and MailBox Guard firmware need to be updated.
 - **08.05.2025**
   - MailBox Guard Production is Discontinued. The New version "[PirBOX-LITE](https://github.com/PricelessToolkit/PirBOX-LITE) or PirBOX-MAX"
 - **30.07.2024**
