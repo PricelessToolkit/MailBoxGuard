@@ -44,7 +44,7 @@ void setup() {
   LoRa.setCodingRate4(CODING_RATE);           // 5 - 8, defaults to 5
   LoRa.setSyncWord(SYNC_WORD);                // defaults to 0x12
   LoRa.setPreambleLength(PREAMBLE_LENGTH);    // 6 - 65535, defaults to 8
-  LoRa.disableCrc();                          // defaults to disabled
+  LoRa.enableCrc();                           // defaults to disabled
   LoRa.setTxPower(TX_POWER);                  // 2 - 20, defaults to 17
 }
 
